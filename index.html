@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>KanaLatih | Sistem Belajar Terarah & Adaptif</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-color: #0f1015;
+      --card-bg: rgba(25, 26, 35, 0.6);
+      --primary: #ff9f1c;
+      --primary-hover: #ffb75e;
+      --accent: #2ec4b6;
+      --gold: #ffd700;
+    }
+    
+    html { font-size: 15px; }
+    @media (min-width: 768px) { html { font-size: 16px; } }
+
+    * { font-family: 'Nunito', sans-serif; user-select: none; -webkit-tap-highlight-color: transparent; }
+    .jp-font { font-family: 'Noto Sans JP', sans-serif; }
+    
+    body { 
+      background-color: var(--bg-color);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(46, 196, 182, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(255, 159, 28, 0.1) 0px, transparent 50%),
+        url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm10 10a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-20 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm10-20a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+      color: #e2e8f0;
+      overflow-x: hidden;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 50% { transform: scale(1.05); } 100% { transform: scale(1); opacity: 1; } }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+    @keyframes pulse-glow { 0% { box-shadow: 0 0 0 0 rgba(255, 159, 28, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(255, 159, 28, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 159, 28, 0); } }
+    @keyframes red-flash { 0%, 100% { box-shadow: inset 0 0 4px rgba(239, 68, 68, 0.2); } 50% { box-shadow: inset 0 0 12px rgba(239, 68, 68, 0.7), 0 0 8px rgba(239, 68, 68, 0.4); } }
+    @keyframes gold-shine { from { filter: brightness(1); } to { filter: brightness(1.3) drop-shadow(0 0 6px var(--gold)); } }
+    
+    .animate-tab { animation: fadeSlideUp 0.3s ease-out forwards; }
+    .animate-pop { animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+    .animate-shake { animation: shake 0.4s ease-in-out; }
+    .pulse-glow { animation: pulse-glow 2s infinite; }
+    
+    .card-glass { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 1.5rem; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); transition: transform 0.2s; }
+    .btn-primary { background: linear-gradient(135deg, var(--primary), #e27d00); color: #000; font-weight: 800; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 15px rgba(255, 159, 28, 0.3); }
+    .btn-primary:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 6px 20px rgba(255, 159, 28, 0.4); filter: brightness(1.1); }
+    .btn-primary:active { transform: translateY(1px) scale(0.95); }
+    .btn-secondary { background: #2a2b38; border: 1px solid #3f4156; transition: all 0.2s; }
+    .btn-secondary:hover { background: #353746; transform: translateY(-2px); }
+    .btn-secondary:active { transform: scale(0.95); }
+    
+    .tab-btn { color: #8b949e; transition: all 0.3s; position: relative; }
+    .tab-btn::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 3px; background: var(--primary); transition: width 0.3s; border-radius: 3px 3px 0 0; }
+    .active-tab { color: #fff; font-weight: bold; background: rgba(255,255,255,0.05); }
+    .active-tab::after { width: 80%; }
+
+    .kana-huge { font-size: 5rem; line-height: 1.2; font-weight: 900; text-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+    @media (min-width: 768px) { .kana-huge { font-size: 6rem; } }
+    
+    #mascot { position: fixed; bottom: 20px; right: 20px; z-index: 50; cursor: pointer; transition: 0.3s; }
+    #mascot:hover { transform: scale(1.1) rotate(5deg); }
+    
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+    ::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #6b7280; }
+    
+    .kana-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(52px, 1fr)); gap: 8px; }
+    .kana-box { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 10px; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: 0.2s; position: relative; }
+    .kana-box:hover { transform: scale(1.15); z-index: 10; box-shadow: 0 4px 12px rgba(0,0,0,0.6); }
+    
+    .mastered-box { background: linear-gradient(135deg, rgba(212,175,55,0.2), rgba(255,215,0,0.3)); border: 2px solid var(--gold); color: var(--gold); animation: gold-shine 2s infinite alternate; }
+    .mastered-box::after { content: '★'; position: absolute; bottom: 1px; right: 3px; font-size: 0.6rem; color: var(--gold); }
+    .learning-box { background: rgba(255, 159, 28, 0.15); border: 1px solid #ff9f1c; color: #ff9f1c; }
+    .struggle-box { background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; color: #ef4444; animation: red-flash 1.5s infinite ease-in-out; }
+    .unseen-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); color: #52525b; }
+
+    #speedOverlay { background: radial-gradient(circle, transparent 40%, rgba(239,68,68,0.2) 100%); opacity: 0; transition: 0.5s; pointer-events: none; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Mobile Nav Scroll Snap */
+    .mobile-tabs { scroll-snap-type: x mandatory; }
+    .mobile-tabs button { scroll-snap-align: start; flex-shrink: 0; }
+
+    /* Breakpoint Mobile Ekstrem */
+    @media (max-width: 640px) {
+      body { font-size: 14px; }
+      .card-glass { border-radius: 1.1rem; padding: 1rem !important; }
+      .kana-huge { font-size: 3.5rem !important; line-height: 1.1; }
+      h1 { font-size: 1.6rem !important; }
+      h2 { font-size: 1.3rem !important; }
+      h3 { font-size: 1.05rem !important; }
+      
+      .kana-grid { grid-template-columns: repeat(auto-fill, minmax(58px, 1fr)); gap: 10px; }
+      .kana-box { font-size: 1rem; border-radius: 12px; }
+
+      #mascot { bottom: 12px; right: 12px; transform: scale(0.82); }
+      #mascotBubble { max-width: 180px; font-size: 11px; }
+    }
+
+    /* Hover Fallback Mobile */
+    @media (hover: none) {
+      .kana-box:hover,
+      .btn-primary:hover,
+      .btn-secondary:hover { transform: none; box-shadow: none; filter: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="mascot" class="flex flex-col items-center">
+  <div id="mascotBubble" class="bg-white text-black px-4 py-2 rounded-2xl rounded-br-sm shadow-xl font-bold text-sm mb-2 opacity-0 transition-opacity duration-300 transform translate-y-2 max-w-xs">Konnichiwa!</div>
+  <div id="mascotEmoji" class="text-5xl drop-shadow-xl animate-bounce" style="animation-duration: 2s;">😺</div>
+</div>
+
+<div class="max-w-5xl mx-auto px-3 sm:px-4 py-4 sm:py-6 md:py-10">
+  
+  <div class="flex flex-col gap-4 mb-6 md:flex-row md:justify-between md:items-center">
+    <div class="flex items-center gap-3">
+      <div class="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl flex items-center justify-content-center shadow-lg shadow-orange-500/30">
+        <span class="text-2xl font-bold text-black mx-auto jp-font">あ</span>
+      </div>
+      <div>
+        <h1 class="text-3xl font-extrabold tracking-tight">Kana<span class="text-amber-400">Latih</span></h1>
+        <p class="text-xs text-gray-500 tracking-wide">ADAPTIVE LEARNING SYSTEM</p>
+      </div>
+    </div>
+    
+    <div class="flex bg-gray-800/80 p-1 rounded-2xl backdrop-blur-sm border border-gray-700 w-full sm:w-auto">
+      <button id="modeHiraganaBtn" class="flex-1 sm:flex-none px-4 py-2 rounded-xl text-sm font-bold transition-all shadow-md bg-amber-500 text-black">ひらがな</button>
+      <button id="modeKatakanaBtn" class="flex-1 sm:flex-none px-4 py-2 rounded-xl text-sm font-bold transition-all text-gray-400 hover:text-white flex items-center justify-center gap-2">
+        カタカナ <span id="katakanaLock">🔒</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-tabs flex overflow-x-auto hide-scrollbar gap-2 mb-5 pb-2 border-b border-gray-800/50">
+    <button data-tab="home" class="tab-btn active-tab px-4 py-2.5 rounded-t-xl whitespace-nowrap text-sm">🏠 Dashboard</button>
+    <button data-tab="kana" class="tab-btn px-4 py-2.5 rounded-t-xl whitespace-nowrap text-sm">🎯 Quiz Adaptif</button>
+    <button data-tab="read" class="tab-btn px-4 py-2.5 rounded-t-xl whitespace-nowrap text-sm">📖 Mode Eja</button>
+    <button data-tab="write" class="tab-btn px-4 py-2.5 rounded-t-xl whitespace-nowrap text-sm">✍️ Tulis (Recall)</button>
+    <button data-tab="speed" id="navSpeedBtn" class="tab-btn px-4 py-2.5 rounded-t-xl whitespace-nowrap text-sm opacity-60">⚡ Speed Rush 🔒</button>
+    <button data-tab="progress" class="tab-btn px-4 py-2.5 rounded-t-xl whitespace-nowrap text-sm">📊 Peta Penguasaan</button>
+  </div>
+
+  <div id="homeSection" class="tab-section animate-tab">
+    <div class="grid md:grid-cols-12 gap-6">
+      <div class="md:col-span-8 card-glass p-5 sm:p-6 md:p-8 flex flex-col justify-center relative overflow-hidden group">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl -mr-20 -mt-20 transition-all group-hover:bg-amber-500/20"></div>
+        <h2 class="text-3xl font-bold mb-2 z-10">Lanjutkan Perjalananmu! 🚀</h2>
+        <p class="text-gray-400 mb-6 z-10">Streak saat ini: <span id="streakCount" class="text-amber-400 font-extrabold text-xl">0</span> Hari Beruntun</p>
+        
+        <div class="w-full bg-gray-800/50 rounded-full h-3 mb-2 z-10 overflow-hidden">
+          <div id="masteryBar" class="bg-gradient-to-r from-teal-400 to-emerald-400 h-3 rounded-full transition-all duration-1000 w-0 shadow-[0_0_10px_rgba(46,196,182,0.7)]"></div>
+        </div>
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 z-10 gap-2 sm:gap-0">
+          <p class="text-sm text-emerald-400 font-semibold" id="masteryText">0% Total Keseluruhan Huruf Dikuasai</p>
+          <p class="text-xs text-amber-400 font-bold" id="speedLockWarning">Butuh 30% untuk buka Speed Rush</p>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row gap-3 z-10">
+          <button onclick="showTab('read')" class="btn-primary pulse-glow w-full sm:w-auto px-6 py-3 rounded-2xl text-base flex justify-center items-center gap-2">
+            📖 Mulai Mode Eja & Baca
+          </button>
+          <button onclick="showTab('kana')" class="btn-secondary w-full sm:w-auto px-6 py-3 rounded-2xl text-base font-bold flex justify-center items-center gap-2">
+            🎯 Main Quiz Adaptif
+          </button>
+        </div>
+      </div>
+
+      <div class="md:col-span-4 card-glass p-6 border-t-4 border-t-amber-500">
+        <h3 class="text-xl font-bold mb-4 flex items-center gap-2">📋 Target Harian</h3>
+        <ul class="space-y-4">
+          <li class="flex items-center gap-3 bg-white/5 p-3 rounded-xl border border-white/5">
+            <div id="goalRead" class="w-6 h-6 rounded-md bg-gray-700 flex items-center justify-center text-sm"></div>
+            <span class="font-semibold text-gray-200">Main 8 Mode Eja/Quiz</span>
+          </li>
+          <li class="flex items-center gap-3 bg-white/5 p-3 rounded-xl border border-white/5">
+            <div id="goalWrite" class="w-6 h-6 rounded-md bg-gray-700 flex items-center justify-center text-sm"></div>
+            <span class="font-semibold text-gray-200">Latih Tulisan 3 Huruf</span>
+          </li>
+          <li class="flex items-center gap-3 bg-white/5 p-3 rounded-xl border border-white/5">
+            <div id="goalSpeed" class="w-6 h-6 rounded-md bg-gray-700 flex items-center justify-center text-sm"></div>
+            <span class="font-semibold text-gray-200">Mainkan 1x Speed Rush</span>
+          </li>
+        </ul>
+        <p class="text-xs text-gray-400 mt-4 text-center">Selesaikan target harian untuk membuka Katakana!</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="kanaSection" class="tab-section hidden">
+    <div class="flex justify-center mb-6 bg-gray-800/50 p-1 rounded-2xl w-full sm:w-max mx-auto border border-gray-700 backdrop-blur-md">
+      <button id="flashcardModeBtn" class="flex-1 sm:flex-none px-6 py-2 rounded-xl font-bold bg-amber-500 text-black shadow-md transition-all">Flashcard</button>
+      <button id="quizModeBtn" class="flex-1 sm:flex-none px-6 py-2 rounded-xl font-bold text-gray-400 hover:text-white transition-all">Quiz Interaktif</button>
+    </div>
+
+    <div id="flashcardPanel">
+      <div class="card-glass max-w-sm mx-auto p-10 text-center relative overflow-hidden group cursor-pointer" onclick="speakCurrentFlashcard()">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <p class="text-gray-400 text-sm mb-4">Tap untuk dengar pelafalan</p>
+        <div id="flashcardChar" class="kana-huge jp-font text-white mb-6 transform group-hover:scale-110 transition-transform">あ</div>
+        <div id="flashcardRomaji" class="text-4xl font-extrabold text-amber-400 tracking-wider">a</div>
+      </div>
+      <div class="flex justify-center gap-4 mt-8">
+        <button id="prevCardBtn" class="btn-secondary px-6 py-3 rounded-full text-xl hover:bg-gray-700">◀</button>
+        <button id="nextCardBtn" class="btn-secondary px-6 py-3 rounded-full text-xl hover:bg-gray-700">▶</button>
+      </div>
+    </div>
+
+    <div id="quizPanel" class="card-glass max-w-2xl mx-auto p-8 text-center hidden">
+      <div class="flex justify-between items-center mb-4 text-sm font-bold text-gray-400">
+        <span>Score: <span id="quizScore" class="text-amber-400 text-lg">0</span></span>
+        <span>Combo: <span id="quizCombo" class="text-teal-400 text-lg">x1</span></span>
+      </div>
+      <p class="text-gray-300 mb-2">Pilih romaji yang tepat untuk karakter ini!</p>
+      <div id="quizChar" class="kana-huge jp-font text-white mb-8 animate-pop drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">か</div>
+      <div id="quizOptions" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+    </div>
+  </div>
+
+  <div id="readSection" class="tab-section hidden">
+    <div class="card-glass max-w-2xl mx-auto p-6 md:p-8 text-center relative overflow-hidden">
+      <div class="mb-6">
+        <p class="text-xs font-bold text-gray-400 mb-2 tracking-wider">TAHAP PEMBELAJARAN BERTINGKAT</p>
+        <div class="flex flex-wrap justify-center gap-1.5 bg-gray-900/60 p-1.5 rounded-2xl border border-gray-800">
+          <button id="readLvl1Btn" onclick="setReadLevel(1)" class="px-3 py-2 rounded-xl text-xs font-bold bg-amber-500 text-black transition-all">T1: Single</button>
+          <button id="readLvl2Btn" onclick="setReadLevel(2)" class="px-3 py-2 rounded-xl text-xs font-bold text-gray-400 hover:text-white transition-all">T2: Gabung</button>
+          <button id="readLvl3Btn" onclick="setReadLevel(3)" class="px-3 py-2 rounded-xl text-xs font-bold text-gray-400 hover:text-white transition-all">T3: Kata Indo</button>
+          <button id="readLvl4Btn" onclick="setReadLevel(4)" class="px-3 py-2 rounded-xl text-xs font-bold text-gray-400 hover:text-white transition-all">T4: Frasa</button>
+          <button id="readLvl5Btn" onclick="setReadLevel(5)" class="px-3 py-2 rounded-xl text-xs font-bold text-gray-400 hover:text-white transition-all">T5: Kalimat</button>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row justify-between items-center mb-6 px-2 text-sm gap-3">
+        <div class="text-gray-400 font-semibold">
+          Combo Aktif: <span id="readComboCount" class="text-teal-400 font-extrabold text-base">x0</span>
+        </div>
+        <button id="toggleRomajiBtn" onclick="toggleGlobalRomaji()" class="text-xs bg-gray-800 border border-gray-700 px-3 py-1.5 rounded-xl text-amber-400 font-bold hover:bg-gray-700 transition-all w-full sm:w-auto">
+          🔍 Romaji: Tampil
+        </button>
+      </div>
+
+      <p class="text-gray-300 mb-2 text-sm">Ubah lambang karakter menjadi bunyi alfabet (Romaji):</p>
+      
+      <div id="readKanaDisplay" class="kana-huge jp-font text-white mb-6 tracking-widest animate-pop select-none min-h-[120px] flex items-center justify-center">
+        -
+      </div>
+
+      <div class="max-w-md mx-auto mb-6">
+        <input type="text" id="readUserInput" autocomplete="off" autofocus placeholder="Ketik ejaan romaji disini..." class="w-full bg-[#1a1b26] border-2 border-gray-700 focus:border-amber-400 rounded-xl px-4 py-3 text-center text-lg sm:text-xl font-bold text-white placeholder-gray-600 outline-none transition-all">
+        <p id="ejaGuideText" class="text-xs text-gray-500 mt-2">Ketik sebebasnya (cth: a-ku ma-kan, akumakan, aku makan)</p>
+        <div id="readHintBox" class="text-sm text-amber-400 mt-2 h-6 opacity-0 transition-opacity font-bold"></div>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-3">
+        <button id="readSpeakBtn" onclick="speakReadTarget()" class="flex-1 sm:flex-none btn-secondary px-5 py-3 rounded-xl font-bold text-sm flex justify-center items-center gap-2 text-gray-300">
+          🔊 Bunyi
+        </button>
+        <button id="readHintBtn" onclick="revealReadHint()" class="flex-1 sm:flex-none btn-secondary px-5 py-3 rounded-xl font-bold text-sm flex justify-center items-center gap-2 text-gray-400 hover:text-white">
+          💡 Hint
+        </button>
+        <button id="readCheckBtn" onclick="checkReadAnswer()" class="w-full sm:w-auto btn-primary px-8 py-3 rounded-xl font-bold text-sm flex justify-center items-center gap-2 text-black">
+          ✨ Cek Jawaban
+        </button>
+      </div>
+
+      <div id="readResultFeedback" class="mt-6 text-lg font-bold h-6"></div>
+    </div>
+  </div>
+
+  <div id="writeSection" class="tab-section hidden">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 max-w-4xl mx-auto">
+      
+      <div class="md:col-span-4 card-glass p-6 text-center order-2 md:order-1">
+        <h3 class="font-bold text-xl mb-4 text-amber-400">Pilih Karakter</h3>
+        <p class="text-xs text-gray-400 mb-2">Review Adaptif: Huruf yang sering salah diprioritaskan</p>
+        <div class="grid grid-cols-5 sm:grid-cols-4 gap-2 max-h-96 overflow-y-auto pr-2" id="writeCharList"></div>
+      </div>
+
+      <div class="md:col-span-8 card-glass p-6 flex flex-col items-center order-1 md:order-2">
+        <h3 class="text-2xl font-bold mb-2 flex items-center gap-2">✍️ Memori Motorik & Penulisan</h3>
+        
+        <div class="text-center mb-4 flex items-center justify-center gap-4">
+          <div class="text-center">
+             <span class="text-3xl font-bold jp-font text-white" id="targetWriteChar">あ</span>
+             <span id="targetWriteRomaji" class="text-gray-400 ml-2 text-xl font-bold">(a)</span>
+          </div>
+          <div class="text-xs text-left bg-gray-800/80 p-2 rounded-lg text-gray-300 border border-gray-700">
+             Coretan: <span id="strokeCountDisplay" class="font-bold text-amber-400 text-sm">0</span><br>
+             Level: <span id="writeTierDisplay" class="font-bold text-teal-400 text-sm">T2 Outline</span>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap justify-center mb-4 bg-gray-900/60 p-1.5 rounded-2xl border border-gray-800 w-full sm:w-max">
+            <button id="tierT1Btn" onclick="window.currentTierMode='T1'; setWriteLevelUI('T1'); clearWritingCanvas();" class="flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-bold text-gray-400 hover:text-white transition-all">T1 Full Ghost</button>
+            <button id="tierT2Btn" onclick="window.currentTierMode='T2'; setWriteLevelUI('T2'); clearWritingCanvas();" class="flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 text-black transition-all">T2 Outline</button>
+            <button id="tierT3Btn" onclick="window.currentTierMode='T3'; setWriteLevelUI('T3'); clearWritingCanvas();" class="flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-bold text-gray-400 hover:text-white transition-all">T3 Blank Recall</button>
+        </div>
+        
+        <div class="relative w-full max-w-[340px] aspect-square mx-auto bg-[#1a1b26] rounded-3xl border-4 border-gray-800 shadow-inner overflow-hidden p-2">
+          <canvas id="strokeCanvas" width="300" height="300" class="w-full h-full cursor-crosshair touch-none rounded-2xl"></canvas>
+        </div>
+        
+        <div class="flex flex-wrap justify-center w-full gap-3 mt-6">
+          <button onclick="clearWritingCanvas()" class="flex-1 sm:flex-none btn-secondary px-6 py-3 rounded-xl font-bold text-gray-300 flex justify-center items-center gap-2">
+            🧽 Bersihkan
+          </button>
+          <button onclick="validateCurrentHandwriting()" class="w-full sm:w-auto btn-primary px-8 py-3 rounded-xl font-bold flex justify-center items-center gap-2 text-black">
+            ✨ Validasi Goresan
+          </button>
+        </div>
+        <div id="writeResult" class="mt-4 text-sm font-bold text-center h-auto min-h-[4rem] w-full max-w-md break-words flex flex-col justify-center"></div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div id="speedSection" class="tab-section hidden relative">
+    <div id="speedOverlay" class="absolute inset-0 z-0 rounded-3xl"></div>
+    <div class="card-glass max-w-3xl mx-auto p-6 sm:p-10 text-center z-10 relative overflow-hidden">
+      <div id="speedLockScreen" class="py-8 sm:py-12">
+        <div class="text-5xl sm:text-6xl mb-4 filter grayscale">⚡🔒</div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold mb-2 text-gray-400">Fitur Terkunci</h2>
+        <p class="text-gray-300 text-sm sm:text-base max-w-md mx-auto mb-6">Mode kecepatan tinggi tidak cocok untuk pemula yang belum otomatis membaca huruf. Otakmu akan dipaksa sekadar menebak visual gambar.</p>
+        <div class="bg-gray-800/60 max-w-xs mx-auto p-4 rounded-2xl border border-gray-700 text-sm font-semibold">
+          Butuh Tingkat Penguasaan Keseluruhan: <span class="text-amber-400">≥ 30%</span><br>
+          Penguasaan Saat Ini: <span id="lockScreenProgressText" class="text-red-400">0%</span>
+        </div>
+      </div>
+
+      <div id="speedContentScreen" class="hidden">
+        <div id="speedSetup">
+          <div class="text-6xl mb-4">⚡</div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-red-500">SPEED RUSH CHALLENGE</h2>
+          <p class="text-gray-300 mb-8 text-base sm:text-lg">Waktu: 30 Detik. Uji reflek decoding visualmu secepat mungkin tanpa ragu!</p>
+          <button id="startSpeedBtn" class="btn-primary pulse-glow w-full sm:w-auto px-10 py-4 rounded-full text-xl sm:text-2xl">Mulai Badai Kecepatan!</button>
+        </div>
+
+        <div id="speedGame" class="hidden">
+          <div class="flex justify-between items-center mb-4">
+            <div class="bg-gray-800 px-4 py-2 rounded-xl text-lg sm:text-xl font-bold border border-gray-700">⏰ <span id="speedTimer" class="text-red-400">30</span>s</div>
+            <div class="bg-gray-800 px-4 py-2 rounded-xl text-lg sm:text-xl font-bold border border-gray-700">🔥 Skor: <span id="speedScoreDisplay" class="text-amber-400">0</span></div>
+          </div>
+          
+          <div class="w-full bg-gray-800 h-2 rounded-full mb-8">
+            <div id="speedTimeBar" class="bg-red-500 h-2 rounded-full w-full transition-all duration-1000 linear"></div>
+          </div>
+
+          <div id="speedChar" class="kana-huge jp-font mb-8 animate-pop">あ</div>
+          <div id="speedOptions" class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 max-w-lg mx-auto"></div>
+        </div>
+
+        <div id="speedResult" class="hidden">
+          <h2 class="text-3xl sm:text-4xl font-bold mb-2">Waktu Selesai! ⏰</h2>
+          <p class="text-gray-400 mb-6">Pencapaian Reflek Skor:</p>
+          <div class="text-6xl font-black text-amber-400 mb-8 jp-font drop-shadow-[0_0_20px_rgba(255,159,28,0.5)] animate-pop" id="speedFinalScore">0</div>
+          <button id="retrySpeedBtn" class="btn-primary w-full sm:w-auto px-8 py-3 rounded-full text-lg">Ulangi Sesi Tantangan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="progressSection" class="tab-section hidden">
+    <div class="card-glass p-5 sm:p-8">
+      <h2 class="text-xl sm:text-2xl font-bold mb-6 flex items-center gap-2">📊 Evaluasi Penguasaan Saraf Otak</h2>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="bg-[#1a1b26] p-4 sm:p-5 rounded-2xl border border-gray-700/50 text-center">
+          <p class="text-gray-400 text-xs sm:text-sm mb-1">Dikuasai Penuh (Master)</p>
+          <p id="statMastered" class="text-3xl sm:text-4xl font-black text-teal-400">0</p>
+        </div>
+        <div class="bg-[#1a1b26] p-4 sm:p-5 rounded-2xl border border-gray-700/50 text-center">
+          <p class="text-gray-400 text-xs sm:text-sm mb-1">Total Interaksi Latihan</p>
+          <p id="statTotal" class="text-3xl sm:text-4xl font-black text-amber-400">0</p>
+        </div>
+        <div class="bg-[#1a1b26] p-4 sm:p-5 rounded-2xl border border-gray-700/50 text-center">
+          <p class="text-gray-400 text-xs sm:text-sm mb-1">Rasio Akurasi Jawab</p>
+          <p id="statAcc" class="text-3xl sm:text-4xl font-black text-blue-400">0%</p>
+        </div>
+        <div class="bg-[#1a1b26] p-4 sm:p-5 rounded-2xl border border-gray-700/50 text-center">
+          <p class="text-gray-400 text-xs sm:text-sm mb-1">Hambatan Utama</p>
+          <p id="statHard" class="text-3xl sm:text-4xl font-black jp-font text-red-400">-</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-3">
+        <div>
+          <h3 class="font-bold text-lg text-gray-300">Peta Penguasaan Dinamis</h3>
+          <p class="text-xs text-amber-400 font-bold mb-1">🚀 Level Baru Terbuka Saat Akurasi Tahap Sebelumnya Mencapai 80%</p>
+          <p class="text-xs text-gray-500">💡 Klik/Sentuh kotak karakter manapun untuk mendengarkan lafal aslinya secara instan</p>
+        </div>
+        <div class="flex flex-wrap gap-3 text-xs text-gray-400">
+          <span class="flex items-center gap-1"><div class="w-3 h-3 rounded-sm mastered-box"></div> Master (Emas)</span>
+          <span class="flex items-center gap-1"><div class="w-3 h-3 rounded-sm learning-box"></div> Dipahami</span>
+          <span class="flex items-center gap-1"><div class="w-3 h-3 rounded-sm struggle-box"></div> Sering Salah</span>
+        </div>
+      </div>
+      
+      <div id="heatmapGrid" class="kana-grid bg-[#1a1b26] p-4 sm:p-5 rounded-2xl border border-gray-700/50 max-h-80 overflow-y-auto"></div>
+    </div>
+  </div>
+
+</div>
+
+<script src="simplify.js"></script>
+<script>
+  // ==================== AUDIO SIGNAL PARSER ====================
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  function playTone(freq, type, duration, vol=0.1) {
+    if(audioCtx.state === 'suspended') audioCtx.resume();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type; osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.start(); osc.stop(audioCtx.currentTime + duration);
+  }
+  const sound = {
+    click: () => playTone(800, 'sine', 0.08, 0.04),
+    correct: () => { playTone(550, 'sine', 0.08); setTimeout(()=>playTone(850, 'sine', 0.12), 80); },
+    wrong: () => { playTone(280, 'square', 0.15); setTimeout(()=>playTone(220, 'square', 0.15), 120); },
+    stamp: () => { playTone(900, 'sine', 0.05); setTimeout(()=>playTone(1200, 'sine', 0.1), 50); }
+  };
+  function speak(text) { 
+    if(!window.speechSynthesis) return;
+    let u = new SpeechSynthesisUtterance(text); u.lang = 'ja-JP'; u.rate = 0.70;
+    window.speechSynthesis.cancel(); window.speechSynthesis.speak(u); 
+  }
+
+  // ==================== COMPARE ENGINE V2 (LOGIKA BARU) ====================
+  const DIR_COST = {
+      R:  { R:0, RD:0.2, RU:0.2, D:0.5, U:0.5, L:1.0, LD:1.0, LU:1.0 },
+      RD: { R:0.2, RD:0, D:0.2, RU:0.5, LD:0.5, L:0.8, U:0.8, LU:1.0 },
+      RU: { R:0.2, RU:0, U:0.2, RD:0.5, LU:0.5, L:0.8, D:0.8, LD:1.0 },
+      D:  { D:0, RD:0.2, LD:0.2, R:0.5, L:0.5, U:1.0, RU:1.0, LU:1.0 },
+      U:  { U:0, RU:0.2, LU:0.2, R:0.5, L:0.5, D:1.0, RD:1.0, LD:1.0 },
+      L:  { L:0, LD:0.2, LU:0.2, R:1.0, RD:0.8, RU:0.8, D:0.5, U:0.5 },
+      LD: { LD:0, L:0.2, D:0.2, LU:0.5, RD:0.5, R:1.0, U:1.0, RU:1.0 },
+      LU: { LU:0, L:0.2, U:0.2, LD:0.5, RU:0.5, R:1.0, D:1.0, RD:1.0 }
+  };
+
+  function getDirectionCost(dir1, dir2) {
+      if (dir1 === dir2) return 0;
+      if (DIR_COST[dir1] && DIR_COST[dir1][dir2] !== undefined) return DIR_COST[dir1][dir2];
+      return 1.0; 
+  }
+
+  function directionalSimilarity(seq1, seq2) {
+      if (seq1.length === 0 && seq2.length === 0) return 1.0;
+      const len1 = seq1.length, len2 = seq2.length;
+      const dp = Array.from({ length: len1 + 1 }, () => new Array(len2 + 1).fill(0));
+      for (let i = 0; i <= len1; i++) dp[i][0] = i;
+      for (let j = 0; j <= len2; j++) dp[0][j] = j;
+      for (let i = 1; i <= len1; i++) {
+          for (let j = 1; j <= len2; j++) {
+              const cost = getDirectionCost(seq1[i - 1], seq2[j - 1]);
+              dp[i][j] = Math.min(
+                  dp[i - 1][j] + 1,        
+                  dp[i][j - 1] + 1,        
+                  dp[i - 1][j - 1] + cost  
+              );
+          }
+      }
+      const maxLen = Math.max(len1, len2);
+      return maxLen > 0 ? 1.0 - (dp[len1][len2] / maxLen) : 1.0;
+  }
+
+  function compressedSimilarity(comp1, comp2) {
+      const norm = (c) => c.map(item => {
+          if (typeof item === 'string') return { direction: item, ratio: 1.0 };
+          return { direction: item.direction || '', ratio: item.ratio ?? 1.0 };
+      });
+      const c1 = norm(comp1);
+      const c2 = norm(comp2);
+      const maxLen = Math.max(c1.length, c2.length);
+      if (maxLen === 0) return 1.0;
+
+      let totalSim = 0;
+      for (let i = 0; i < maxLen; i++) {
+          const seg1 = i < c1.length ? c1[i] : null;
+          const seg2 = i < c2.length ? c2[i] : null;
+          if (seg1 && seg2) {
+              const dirSim = 1 - getDirectionCost(seg1.direction, seg2.direction);
+              const ratioSim = 1 - Math.abs(seg1.ratio - seg2.ratio);
+              totalSim += (dirSim + ratioSim) / 2; 
+          }
+      }
+      return totalSim / maxLen;
+  }
+
+  function levenshteinSimilarity(a, b) {
+      if (!a || !b) return 1.0;
+      if (a.length === 0 || b.length === 0) return 1.0; 
+      const matrix = Array.from({ length: a.length + 1 }, () => new Array(b.length + 1).fill(0));
+      for (let i = 0; i <= a.length; i++) matrix[i][0] = i;
+      for (let j = 0; j <= b.length; j++) matrix[0][j] = j;
+      for (let i = 1; i <= a.length; i++) {
+          for (let j = 1; j <= b.length; j++) {
+              if (a[i - 1] === b[j - 1]) matrix[i][j] = matrix[i - 1][j - 1];
+              else matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j] + 1);
+          }
+      }
+      const maxLen = Math.max(a.length, b.length);
+      return maxLen > 0 ? 1.0 - (matrix[a.length][b.length] / maxLen) : 1.0;
+  }
+
+  function compareChar(inputChar, dbChar) {
+      let score = 100.0;
+      const inputCode = inputChar.characterCode || '';
+      const dbCode = dbChar.characterCode || '';
+
+      if (inputChar.numStrokes !== dbChar.numStrokes) {
+          score -= 25.0;
+      }
+
+      const aspectDiff = Math.abs((inputChar.originalAspectRatio || 0.0) - (dbChar.originalAspectRatio || 0.0));
+      score -= aspectDiff * 15.0;
+
+      const inputStrokes = inputChar.strokes || [];
+      const dbStrokes = dbChar.strokes || [];
+      const maxStrokes = Math.max(inputStrokes.length, dbStrokes.length);
+      const strokeWeight = maxStrokes > 0 ? 1.0 / maxStrokes : 1.0;
+
+      let totalLRDiff = 0.0;
+      const minStrokes = Math.min(inputStrokes.length, dbStrokes.length);
+      for (let i = 0; i < minStrokes; i++) {
+          const lr1 = inputStrokes[i].lengthRatio || 0.0;
+          const lr2 = dbStrokes[i].lengthRatio || 0.0;
+          let diff = Math.abs(lr1 - lr2);
+          if (lr1 < 0.08 || lr2 < 0.08) diff *= 2.0;
+          totalLRDiff += diff;
+      }
+      const extraStrokes = Math.abs(inputStrokes.length - dbStrokes.length);
+      totalLRDiff += extraStrokes * 0.2;
+      if (maxStrokes > 0) {
+          const avgLRDiff = totalLRDiff / maxStrokes;
+          score -= avgLRDiff * 10.0;
+      }
+
+      for (let i = 0; i < minStrokes; i++) {
+          const s1 = inputStrokes[i];
+          const s2 = dbStrokes[i];
+          const lr1 = s1.lengthRatio || 0.0;
+          const lr2 = s2.lengthRatio || 0.0;
+          let strokeImportance = 1.0;
+          if (lr1 < 0.08 || lr2 < 0.08) strokeImportance = 2.5;
+
+          const dirRaw1 = s1.directions || [];
+          const dirRaw2 = s2.directions || [];
+          const dirSim = directionalSimilarity(dirRaw1, dirRaw2);
+          score -= (1.0 - dirSim) * 25.0 * strokeWeight * strokeImportance;
+
+          const curves1 = s1.curves || [];
+          const curves2 = s2.curves || [];
+          const curveSim = levenshteinSimilarity(curves1, curves2);
+          score -= (1.0 - curveSim) * 25.0 * strokeWeight * strokeImportance;
+
+          const rp1 = s1.relativePosition || {};
+          const rp2 = s2.relativePosition || {};
+          const posDiff =
+              Math.abs((rp1.cx || 0) - (rp2.cx || 0)) +
+              Math.abs((rp1.cy || 0) - (rp2.cy || 0)) +
+              Math.abs((rp1.width || 0) - (rp2.width || 0)) +
+              Math.abs((rp1.height || 0) - (rp2.height || 0));
+          score -= posDiff * 8.0 * strokeWeight * strokeImportance;
+
+          const compSim = compressedSimilarity(s1.dirCompressed || [], s2.dirCompressed || []);
+          const compressedBonus = compSim > 0.8 ? (compSim - 0.8) * 5.0 : 0.0;
+          score += compressedBonus * strokeWeight;
+      }
+
+      if (inputCode !== dbCode && score >= 99.9) score = 99.5;
+      if (extraStrokes > 0 && score > 99.0) score -= extraStrokes * 0.5;
+
+      return Math.max(0.0, Math.min(100.0, score));
+  }
+
+  function rankChar(inputChar, database, topN = 5) {
+      const results = [];
+      for (const [charCode, dbChar] of Object.entries(database)) {
+          const score = compareChar(inputChar, dbChar);
+          results.push({ char: charCode, score });
+      }
+      results.sort((a, b) => b.score - a.score);
+      return results.slice(0, topN);
+  }
+
+  // ==================== FEATURE EXTRACTOR DARI CORETTAN ====================
+  class FeatureExtractor {
+      static distance(a, b) {
+          return Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2);
+      }
+
+      static resample(stroke, n = 65) {
+          if (stroke.length < 2) return Array(n).fill(stroke[0] || {x:0, y:0});
+          let totalLength = 0;
+          for (let i = 1; i < stroke.length; i++) totalLength += this.distance(stroke[i - 1], stroke[i]);
+          if (totalLength === 0) return Array(n).fill(stroke[0]);
+          const interval = totalLength / (n - 1);
+          let D = 0;
+          let newPoints = [stroke[0]];
+          let points = [...stroke];
+          
+          for (let i = 1; i < points.length; i++) {
+              const d = this.distance(points[i - 1], points[i]);
+              if ((D + d) >= interval) {
+                  const t = (interval - D) / d;
+                  const q = {
+                      x: points[i - 1].x + t * (points[i].x - points[i - 1].x),
+                      y: points[i - 1].y + t * (points[i].y - points[i - 1].y)
+                  };
+                  newPoints.push(q);
+                  points.splice(i, 0, q);
+                  D = 0;
+              } else {
+                  D += d;
+              }
+          }
+          while (newPoints.length < n) newPoints.push(points[points.length - 1]);
+          return newPoints.slice(0, n);
+      }
+
+      static getDirection8Way(dx, dy) {
+          if (dx === 0 && dy === 0) return "R";
+          const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+          if (angle >= -22.5 && angle < 22.5) return "R";
+          if (angle >= 22.5 && angle < 67.5) return "RD";
+          if (angle >= 67.5 && angle < 112.5) return "D";
+          if (angle >= 112.5 && angle < 157.5) return "LD";
+          if (angle >= 157.5 || angle < -157.5) return "L";
+          if (angle >= -157.5 && angle < -112.5) return "LU";
+          if (angle >= -112.5 && angle < -67.5) return "U";
+          if (angle >= -67.5 && angle < -22.5) return "RU";
+          return "R";
+      }
+
+      static extract(strokes) {
+          if (!strokes || strokes.length === 0) return { numStrokes: 0, originalAspectRatio: 1, strokes: [] };
+          
+          let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+          strokes.forEach(s => s.forEach(p => {
+              if (p.x < minX) minX = p.x;
+              if (p.x > maxX) maxX = p.x;
+              if (p.y < minY) minY = p.y;
+              if (p.y > maxY) maxY = p.y;
+          }));
+          
+          const width = Math.max(maxX - minX, 0.001);
+          const height = Math.max(maxY - minY, 0.001);
+          const originalAspectRatio = width / height;
+          const cxGlobal = minX + width / 2;
+          const cyGlobal = minY + height / 2;
+
+          let totalLength = 0;
+          const strokeLengths = strokes.map(s => {
+              let l = 0;
+              for(let i=1; i<s.length; i++) l += this.distance(s[i-1], s[i]);
+              totalLength += l;
+              return l;
+          });
+          if (totalLength === 0) totalLength = 0.001;
+
+          const extractedStrokes = strokes.map((rawStroke, index) => {
+              const resampled = this.resample(rawStroke, 65);
+              const directions = [];
+              for (let i = 1; i < resampled.length; i++) {
+                  directions.push(this.getDirection8Way(resampled[i].x - resampled[i-1].x, resampled[i].y - resampled[i-1].y));
+              }
+
+              let curDir = directions[0] || "R";
+              let count = 0;
+              const dirCompressed = [];
+              directions.forEach(d => {
+                  if (d === curDir) count++;
+                  else {
+                      dirCompressed.push({ direction: curDir, rawCount: count, ratio: count / directions.length });
+                      curDir = d;
+                      count = 1;
+                  }
+              });
+              if (count > 0) dirCompressed.push({ direction: curDir, rawCount: count, ratio: count / directions.length });
+
+              let sMinX = Infinity, sMinY = Infinity, sMaxX = -Infinity, sMaxY = -Infinity;
+              resampled.forEach(p => {
+                  if(p.x < sMinX) sMinX = p.x; if(p.x > sMaxX) sMaxX = p.x;
+                  if(p.y < sMinY) sMinY = p.y; if(p.y > sMaxY) sMaxY = p.y;
+              });
+              const sWidth = Math.max(sMaxX - sMinX, 0.001);
+              const sHeight = Math.max(sMaxY - sMinY, 0.001);
+              const sCx = sMinX + sWidth / 2;
+              const sCy = sMinY + sHeight / 2;
+
+              return {
+                  strokeIndex: index,
+                  directions: directions,
+                  dirCompressed: dirCompressed,
+                  curves: [], 
+                  lengthRatio: strokeLengths[index] / totalLength,
+                  relativePosition: {
+                      cx: (sCx - cxGlobal) / width,
+                      cy: (sCy - cyGlobal) / height,
+                      width: sWidth / width,
+                      height: sHeight / height
+                  }
+              };
+          });
+
+          return {
+              characterCode: "",
+              numStrokes: strokes.length,
+              originalAspectRatio: originalAspectRatio,
+              strokes: extractedStrokes
+          };
+      }
+  }
+
+  // ==================== KANA RECOGNIZER ====================
+  class KanaRecognizer {
+    simplifyStroke(stroke) {
+      const points = stroke.map(p => ({ x: p.x, y: p.y }));
+      return simplify(points, 2, true);
+    }
+    distance(a, b) { return Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2); }
+    resampleStroke(stroke, n = 16) {
+      if (stroke.length < 2) return stroke;
+      let totalLength = 0;
+      for (let i = 1; i < stroke.length; i++) { totalLength += this.distance(stroke[i - 1], stroke[i]); }
+      const interval = totalLength / (n - 1);
+      let D = 0; let newPoints = [stroke[0]]; let points = [...stroke];
+      for (let i = 1; i < points.length; i++) {
+        const d = this.distance(points[i - 1], points[i]);
+        if ((D + d) >= interval) {
+          const t = (interval - D) / d;
+          const q = { x: points[i - 1].x + t * (points[i].x - points[i - 1].x), y: points[i - 1].y + t * (points[i].y - points[i - 1].y) };
+          newPoints.push(q); points.splice(i, 0, q); D = 0;
+        } else { D += d; }
+      }
+      while (newPoints.length < n) { newPoints.push(points[points.length - 1]); }
+      return newPoints.slice(0, n);
+    }
+  }
+  const kanaRecognizer = new KanaRecognizer();
+
+  // ==================== DYNAMIC DATASET CONTAINERS ====================
+  let hiraganaSet = [];
+  let katakanaSet = [];
+  let kanaDataset = [];
+  let kanaFeaturesDB = {}; 
+  let readDataset = [];
+
+  // APP STATES
+  let currentMode = "hiragana";
+  let currentKanaList = [];
+  let userStats = { hiragana: {}, katakana: {} };
+  let dailyGoals = { read: 0, write: 0, speed: 0 };
+  let streak = 0, lastDateStr = "";
+  let unlockedKatakana = false;
+  let currentReadLevel = 1;
+  let currentReadItem = null;
+  let hideRomajiGlobal = false;
+  let readCombo = 0;
+  let sequentialErrors = 0;
+  let globalMasteryPerc = 0;
+
+  // ==================== MASCOT ====================
+  const mascotEmoji = document.getElementById("mascotEmoji");
+  const mascotBubble = document.getElementById("mascotBubble");
+  function setMascot(emoji, text, vitalForce = false) {
+    if(!vitalForce && Math.random() > 0.4) return;
+    mascotEmoji.innerText = emoji;
+    if(text) {
+      mascotBubble.innerText = text;
+      mascotBubble.classList.remove("opacity-0", "translate-y-2");
+      setTimeout(() => {
+        mascotBubble.classList.add("opacity-0", "translate-y-2");
+        setTimeout(() => mascotEmoji.innerText = "😺", 300);
+      }, 3500);
+    }
+  }
+
+  // ==================== ADAPTIVE ====================
+  function getUnlockedKana(fullSet, stats) {
+    if(!fullSet || fullSet.length === 0) return [];
+    let limits = [46, 66, 71, 92, 107];
+    let activeLimit = limits[0]; 
+    for(let i=0; i < limits.length - 1; i++) {
+        let currentLimit = limits[i];
+        let subset = fullSet.slice(0, currentLimit);
+        let masteredCount = 0;
+        subset.forEach(k => {
+            let s = stats[k.char];
+            if(s && s.total >= 4 && (s.correct/s.total) >= 0.75) masteredCount++;
+        });
+        if((masteredCount / currentLimit) >= 0.8) activeLimit = limits[i+1];
+        else break;
+    }
+    return fullSet.slice(0, activeLimit);
+  }
+
+  function getWeightedRandomKana(kanaList, stats) {
+    let pool = [];
+    kanaList.forEach(k => {
+        let s = stats[k.char];
+        let weight = 10; 
+        if (s && s.total > 0) {
+            let isMastered = (s.total >= 4 && (s.correct/s.total) >= 0.75);
+            let isStruggling = (s.errors > s.correct);
+            if (isStruggling) weight = 25; 
+            else if (isMastered) weight = 2;  
+            else weight = 8;  
+        }
+        for(let i=0; i<weight; i++) pool.push(k);
+    });
+    if(pool.length === 0) return kanaList[Math.floor(Math.random() * kanaList.length)];
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  // ==================== SYSTEM STORAGE ====================
+  function loadStats() {
+    let saved = localStorage.getItem("kanalatih_stats_v3");
+    if(saved) userStats = JSON.parse(saved);
+    let goals = localStorage.getItem("kanalatih_goals_v3");
+    let today = new Date().toISOString().slice(0,10);
+    if(goals) {
+      let g = JSON.parse(goals);
+      if(g.date === today) dailyGoals = g.data;
+    }
+    let srk = localStorage.getItem("kanalatih_streak_v3");
+    if(srk) streak = parseInt(srk);
+    let ldate = localStorage.getItem("kanalatih_lastdate_v3");
+    if(ldate) lastDateStr = ldate;
+    let unlKat = localStorage.getItem("kanalatih_katakana_v3");
+    if(unlKat === "true") unlockedKatakana = true;
+    document.getElementById("streakCount").innerText = streak;
+    updateGoalsUI();
+    updateDashboardAndSystemRules();
+    renderHeatmap();
+  }
+
+  function saveStats() {
+    localStorage.setItem("kanalatih_stats_v3", JSON.stringify(userStats));
+  }
+
+  function addGoal(type) {
+    let today = new Date().toISOString().slice(0,10);
+    if(lastDateStr !== today) {
+      if(lastDateStr) {
+        let yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
+        if(lastDateStr === yesterday.toISOString().slice(0,10)) streak++;
+        else streak = 1;
+      } else { streak = 1; }
+      lastDateStr = today;
+      localStorage.setItem("kanalatih_streak_v3", streak);
+      localStorage.setItem("kanalatih_lastdate_v3", lastDateStr);
+      document.getElementById("streakCount").innerText = streak;
+      dailyGoals = { read: 0, write: 0, speed: 0 };
+    }
+    if(type === 'read') dailyGoals.read++;
+    if(type === 'write') dailyGoals.write++;
+    if(type === 'speed') dailyGoals.speed++;
+    localStorage.setItem("kanalatih_goals_v3", JSON.stringify({date: today, data: dailyGoals}));
+    updateGoalsUI();
+  }
+
+  function updateGoalsUI() {
+    document.getElementById("goalRead").innerHTML = dailyGoals.read >= 8 ? "✅" : `<span class='text-gray-500'>${dailyGoals.read}/8</span>`;
+    document.getElementById("goalWrite").innerHTML = dailyGoals.write >= 3 ? "✅" : `<span class='text-gray-500'>${dailyGoals.write}/3</span>`;
+    document.getElementById("goalSpeed").innerHTML = dailyGoals.speed >= 1 ? "✅" : `<span class='text-gray-500'>${dailyGoals.speed}/1</span>`;
+    if(dailyGoals.read >= 8 && !unlockedKatakana) {
+      unlockedKatakana = true;
+      localStorage.setItem("kanalatih_katakana_v3", "true");
+      confetti({particleCount: 100, spread: 70, origin: { y: 0.6 }});
+      setMascot("🙀", "Sugoi! Modul Katakana Berhasil Terbuka!", true);
+    }
+    let btn = document.getElementById("modeKatakanaBtn");
+    if(unlockedKatakana) {
+      document.getElementById("katakanaLock").classList.add("hidden");
+      btn.classList.remove("opacity-50", "cursor-not-allowed");
+    } else {
+      document.getElementById("katakanaLock").classList.remove("hidden");
+      btn.classList.add("opacity-50", "cursor-not-allowed");
+    }
+  }
+
+  function updateStat(char, isCorrect) {
+    if(!userStats[currentMode]) userStats[currentMode] = {};
+    let s = userStats[currentMode][char] || { total:0, correct:0, errors:0 };
+    s.total++;
+    if(isCorrect) s.correct++;
+    else s.errors++;
+    userStats[currentMode][char] = s;
+    saveStats();
+    updateDashboardAndSystemRules();
+    renderHeatmap();
+  }
+
+  function updateDashboardAndSystemRules() {
+    let stats = userStats[currentMode] || {};
+    let fullSet = currentMode === "hiragana" ? hiraganaSet : katakanaSet;
+    let newKanaList = getUnlockedKana(fullSet, stats);
+    if(newKanaList.length > currentKanaList.length) {
+        currentKanaList = newKanaList;
+        confetti({particleCount: 150, spread: 100, origin: { y: 0.5 }});
+        setMascot("🎉", "Level Up! Tahapan Kumpulan Huruf Baru Telah Terbuka!", true);
+        if(!document.getElementById("writeSection").classList.contains("hidden")) renderWriteList();
+    }
+    let mastered = 0, totalAns=0, correctAns=0, worst={char:'-', err:0};
+    fullSet.forEach(k => {
+      let s = stats[k.char];
+      if(s) {
+        totalAns += s.total;
+        correctAns += s.correct;
+        if(s.total >= 4 && (s.correct/s.total) >= 0.75) mastered++;
+        if(s.errors > worst.err) { worst.err = s.errors; worst.char = k.char; }
+      }
+    });
+    globalMasteryPerc = Math.round((mastered / (fullSet.length || 1)) * 100) || 0;
+    document.getElementById("masteryBar").style.width = `${globalMasteryPerc}%`;
+    document.getElementById("masteryText").innerText = `${globalMasteryPerc}% Keseluruhan ${currentMode==="hiragana"?"Hiragana":"Katakana"} Dikuasai`;
+    let navSpeed = document.getElementById("navSpeedBtn");
+    let speedLockWarn = document.getElementById("speedLockWarning");
+    let speedLockScr = document.getElementById("speedLockScreen");
+    let speedContScr = document.getElementById("speedContentScreen");
+    document.getElementById("lockScreenProgressText").innerText = globalMasteryPerc + "%";
+    if(globalMasteryPerc >= 30) {
+      navSpeed.innerText = "⚡ Speed Rush";
+      navSpeed.classList.remove("opacity-60");
+      speedLockWarn.innerText = "Fitur Speed Rush Terbuka! ⚡";
+      if(speedLockScr) speedLockScr.classList.add("hidden");
+      if(speedContScr) speedContScr.classList.remove("hidden");
+    } else {
+      navSpeed.innerText = "⚡ Speed Rush 🔒";
+      navSpeed.classList.add("opacity-60");
+      speedLockWarn.innerText = "Butuh 30% penguasaan total untuk Speed Rush";
+      if(speedLockScr) speedLockScr.classList.remove("hidden");
+      if(speedContScr) speedContScr.classList.add("hidden");
+    }
+    document.getElementById("statMastered").innerText = mastered;
+    document.getElementById("statTotal").innerText = totalAns;
+    document.getElementById("statAcc").innerText = totalAns > 0 ? Math.round((correctAns/totalAns)*100) + "%" : "0%";
+    document.getElementById("statHard").innerText = worst.char;
+  }
+
+  function renderHeatmap() {
+      let container = document.getElementById("heatmapGrid");
+      if(!container) return;
+      container.innerHTML = "";
+      let stats = userStats[currentMode] || {};
+      currentKanaList.forEach(k => {
+        let box = document.createElement("div");
+        box.className = "kana-box jp-font ";
+        let s = stats[k.char];
+        if(!s || s.total === 0) box.classList.add("unseen-box");
+        else if(s.total >= 4 && (s.correct/s.total) >= 0.75) box.classList.add("mastered-box");
+        else if(s.errors > s.correct) box.classList.add("struggle-box");
+        else box.classList.add("learning-box");
+        let charClass = k.char.length > 1 ? "text-xs md:text-sm" : "text-sm md:text-base";
+        box.innerHTML = `<span class='${charClass}'>${k.char}</span><span class='text-[9px] font-normal opacity-60 mt-0.5'>${k.romaji}</span>`;
+        box.onclick = () => { speak(k.char); };
+        container.appendChild(box);
+      });
+  }
+
+  // ==================== MODE ====================
+  document.getElementById("modeHiraganaBtn").onclick = () => { currentMode = "hiragana"; applyMode(); };
+  document.getElementById("modeKatakanaBtn").onclick = () => {
+    if(!unlockedKatakana) { setMascot("🙀", "Selesaikan Misi Target Harian Dahulu!", true); return; }
+    currentMode = "katakana"; applyMode();
+  };
+
+  function applyMode(silent = false) {
+      if (!silent) sound.click();
+      let fullSet = currentMode === "hiragana" ? hiraganaSet : katakanaSet;
+      currentKanaList = getUnlockedKana(fullSet, userStats[currentMode] || {});
+      document.getElementById("modeHiraganaBtn").className = currentMode==="hiragana"?"flex-1 sm:flex-none px-4 py-2 rounded-xl text-sm font-bold bg-amber-500 text-black":"flex-1 sm:flex-none px-4 py-2 rounded-xl text-sm font-bold text-gray-400 hover:text-white";
+      document.getElementById("modeKatakanaBtn").className = currentMode==="katakana"?"flex-1 sm:flex-none px-4 py-2 rounded-xl text-sm font-bold bg-amber-500 text-black flex items-center justify-center gap-2":"flex-1 sm:flex-none px-4 py-2 rounded-xl text-sm font-bold text-gray-400 hover:text-white flex items-center justify-center gap-2" + (!unlockedKatakana?" opacity-50":"");
+      updateDashboardAndSystemRules();
+      flashcardIdx = 0;
+      updateFlashcard();
+      if(!document.getElementById("quizPanel").classList.contains("hidden")) generateQuiz();
+      if(!document.getElementById("readSection").classList.contains("hidden")) generateReadQuestion();
+      if(!document.getElementById("writeSection").classList.contains("hidden")) renderWriteList();
+      renderHeatmap(); 
+  }
+
+  // ==================== QUIZ & FLASHCARD ====================
+  let flashcardIdx = 0;
+  function updateFlashcard() {
+    let charEl = document.getElementById("flashcardChar");
+    if (!charEl || currentKanaList.length === 0) return;
+    charEl.classList.remove("animate-pop"); void charEl.offsetWidth; charEl.classList.add("animate-pop");
+    charEl.innerText = currentKanaList[flashcardIdx].char;
+    document.getElementById("flashcardRomaji").innerText = currentKanaList[flashcardIdx].romaji;
+  }
+  function speakCurrentFlashcard() { sound.click(); if(currentKanaList[flashcardIdx]) speak(currentKanaList[flashcardIdx].char); }
+  document.getElementById("prevCardBtn").onclick = () => { sound.click(); if(currentKanaList.length > 0) { flashcardIdx = (flashcardIdx - 1 + currentKanaList.length) % currentKanaList.length; updateFlashcard(); } };
+  document.getElementById("nextCardBtn").onclick = () => { sound.click(); if(currentKanaList.length > 0) { flashcardIdx = (flashcardIdx + 1) % currentKanaList.length; updateFlashcard(); } };
+  document.getElementById("flashcardModeBtn").onclick = (e) => {
+    sound.click(); e.target.className="flex-1 sm:flex-none px-6 py-2 rounded-xl font-bold bg-amber-500 text-black shadow-md transition-all";
+    document.getElementById("quizModeBtn").className="flex-1 sm:flex-none px-6 py-2 rounded-xl font-bold text-gray-400 hover:text-white transition-all";
+    document.getElementById("flashcardPanel").classList.remove("hidden"); document.getElementById("quizPanel").classList.add("hidden");
+  };
+  document.getElementById("quizModeBtn").onclick = (e) => {
+    sound.click(); e.target.className="flex-1 sm:flex-none px-6 py-2 rounded-xl font-bold bg-amber-500 text-black shadow-md transition-all";
+    document.getElementById("flashcardModeBtn").className="flex-1 sm:flex-none px-6 py-2 rounded-xl font-bold text-gray-400 hover:text-white transition-all";
+    document.getElementById("flashcardPanel").classList.add("hidden"); document.getElementById("quizPanel").classList.remove("hidden");
+    generateQuiz();
+  };
+
+  let quizScore = 0, quizCombo = 0, quizTarget = null;
+  function updateQuizUI() { document.getElementById("quizScore").innerText = quizScore; document.getElementById("quizCombo").innerText = "x" + quizCombo; }
+  function generateQuiz() {
+    if(currentKanaList.length === 0) return;
+    quizTarget = getWeightedRandomKana(currentKanaList, userStats[currentMode] || {});
+    document.getElementById("quizChar").innerText = quizTarget.char;
+    let options = [quizTarget.romaji];
+    while(options.length < 4) {
+      let rand = currentKanaList[Math.floor(Math.random() * currentKanaList.length)].romaji;
+      if(!options.includes(rand)) options.push(rand);
+    }
+    options.sort(() => Math.random() - 0.5);
+    let container = document.getElementById("quizOptions");
+    container.innerHTML = "";
+    options.forEach(opt => {
+      let btn = document.createElement("button");
+      btn.className = "btn-secondary py-4 rounded-xl text-xl font-bold tracking-wider";
+      btn.innerText = opt;
+      btn.onclick = () => handleQuizAnswer(opt === quizTarget.romaji, btn);
+      container.appendChild(btn);
+    });
+  }
+
+  function handleQuizAnswer(isCorrect, btn) {
+    if(isCorrect) {
+      sound.correct();
+      btn.classList.add("bg-teal-500", "text-black", "border-teal-400"); btn.classList.remove("btn-secondary");
+      quizScore += 10 * (Math.floor(quizCombo/3) + 1); quizCombo++;
+      updateStat(quizTarget.char, true); addGoal('read');
+      if(quizCombo % 5 === 0) { confetti({particleCount: 50, spread: 60, origin: { y: 0.8 }, colors:['#2ec4b6','#ff9f1c']}); setMascot("😸", "Combo Keren!", true); }
+      updateQuizUI(); setTimeout(generateQuiz, 400);
+    } else {
+      sound.wrong(); quizCombo = 0; updateQuizUI(); shakeEl(document.getElementById("quizChar"));
+      btn.classList.add("bg-red-500", "text-white", "border-red-400"); btn.classList.remove("btn-secondary");
+      updateStat(quizTarget.char, false); setMascot("😿", "Oops, keliru!");
+      setTimeout(()=>btn.classList.remove("bg-red-500", "text-white", "border-red-400"), 500);
+    }
+  }
+
+  // ==================== READ MODE ====================
+  function toggleGlobalRomaji() {
+    sound.click(); hideRomajiGlobal = !hideRomajiGlobal;
+    document.getElementById("toggleRomajiBtn").innerText = hideRomajiGlobal ? "🔍 Romaji: Sembunyi" : "🔍 Romaji: Tampil";
+    document.getElementById("toggleRomajiBtn").classList.toggle("text-red-400");
+    document.getElementById("ejaGuideText").innerText = hideRomajiGlobal ? "⚠️ Mode Mandiri Aktif. Bantuan romaji ditiadakan." : "Ketik sebebasnya (cth: a-ku ma-kan, akumakan, aku makan)";
+  }
+  function parseKanaUnits(word, kanaSet) {
+    let chars = kanaSet.map(k => k.char);
+    let sorted = [...chars].sort((a, b) => b.length - a.length);
+    let units = []; let temp = word.replace(/[\sー\-]/g, ''); 
+    while(temp.length > 0) {
+      let found = false;
+      for(let char of sorted) {
+        if(temp.startsWith(char)) { units.push(char); temp = temp.slice(char.length); found = true; break; }
+      }
+      if(!found) { units.push(temp[0]); temp = temp.slice(1); }
+    }
+    return units;
+  }
+  function getWeightedReadItem(dataset, stats, unlockedKanaList) {
+    let pool = []; let unlockedChars = unlockedKanaList.map(k => k.char);
+    let validHiraChars = unlockedChars;
+    if (currentMode === "katakana") validHiraChars = unlockedKanaList.map(k => { let hObj = hiraganaSet.find(h => h.romaji === k.romaji); return hObj ? hObj.char : ""; }).filter(c => c !== "");
+    dataset.forEach(item => {
+      let units = parseKanaUnits(item.hira, hiraganaSet);
+      let isAllUnlocked = units.every(u => validHiraChars.includes(u));
+      if (!isAllUnlocked) return; 
+      let weight = 10, isStruggling = false, isMasteredAll = true;
+      units.forEach(u => {
+        let statChar = u; 
+        if (currentMode === "katakana") { let kObj = katakanaSet.find(k => k.romaji === hiraganaSet.find(h => h.char === u)?.romaji); statChar = kObj ? kObj.char : u; }
+        let s = stats[statChar];
+        if (s && s.total > 0) {
+          if (s.errors > s.correct) isStruggling = true;
+          if (!(s.total >= 4 && (s.correct/s.total) >= 0.75)) isMasteredAll = false;
+        } else isMasteredAll = false;
+      });
+      if (isStruggling) weight = 25; else if (isMasteredAll) weight = 2; else weight = 8;                    
+      for(let i=0; i<weight; i++) pool.push(item);
+    });
+    if (pool.length === 0) return null;
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  function setReadLevel(lvl) {
+    sound.click(); currentReadLevel = lvl;
+    [1,2,3,4,5].forEach(l => {
+      let btn = document.getElementById(`readLvl${l}Btn`);
+      if(l === lvl) btn.className = "px-3 py-2 rounded-xl text-xs font-bold bg-amber-500 text-black transition-all";
+      else btn.className = "px-3 py-2 rounded-xl text-xs font-bold text-gray-400 hover:text-white transition-all";
+    });
+    generateReadQuestion();
+  }
+
+  function generateReadQuestion() {
+    let filtered = readDataset.filter(d => d.level === currentReadLevel);
+    if(filtered.length === 0) return;
+    let itemChosen = getWeightedReadItem(filtered, userStats[currentMode] || {}, currentKanaList);
+    if (!itemChosen) {
+      let fallbackFiltered = readDataset.filter(d => d.level === 1);
+      itemChosen = getWeightedReadItem(fallbackFiltered, userStats[currentMode] || {}, currentKanaList);
+      if (!itemChosen) {
+          let fbChar = currentKanaList[Math.floor(Math.random() * currentKanaList.length)] || {char: "-", romaji: "-"};
+          itemChosen = { hira: currentMode === "hiragana" ? fbChar.char : "-", kata: currentMode === "katakana" ? fbChar.char : "-", romaji: fbChar.romaji, level: 1 };
+      }
+    }
+    currentReadItem = itemChosen;
+    let displayString = currentMode === "katakana" ? currentReadItem.kata : currentReadItem.hira;
+    let displayEl = document.getElementById("readKanaDisplay");
+    displayEl.innerText = displayString; displayEl.classList.remove("animate-pop"); void displayEl.offsetWidth; displayEl.classList.add("animate-pop");
+    document.getElementById("readUserInput").value = ""; document.getElementById("readUserInput").disabled = false;
+    document.getElementById("readUserInput").focus(); document.getElementById("readCheckBtn").classList.remove("hidden");
+    document.getElementById("readHintBox").innerText = ""; document.getElementById("readHintBox").classList.add("opacity-0");
+    document.getElementById("readResultFeedback").innerText = "";
+  }
+
+  function speakReadTarget() { sound.click(); if(currentReadItem) speak(currentReadItem.hira); }
+  function revealReadHint() { sound.click(); if(!currentReadItem) return; document.getElementById("readHintBox").innerText = "Hint Bunyi: " + currentReadItem.romaji; document.getElementById("readHintBox").classList.remove("opacity-0"); }
+  
+  function checkReadAnswer() {
+    let inputEl = document.getElementById("readUserInput"); let userStr = inputEl.value;
+    let cleanUserString = userStr.toLowerCase().replace(/[\s\-_]/g, ""); let cleanTargetString = currentReadItem.romaji.toLowerCase().replace(/[\s\-_]/g, "");
+    let feedbackEl = document.getElementById("readResultFeedback");
+    if(!cleanUserString) { shakeEl(inputEl); return; }
+    let activeSet = currentMode === "katakana" ? katakanaSet : hiraganaSet;
+    let targetText = currentMode === "katakana" ? currentReadItem.kata : currentReadItem.hira;
+    let units = parseKanaUnits(targetText, activeSet);
+    if(cleanUserString === cleanTargetString) {
+      sound.correct(); readCombo++; sequentialErrors = 0;
+      document.getElementById("readComboCount").innerText = "x" + readCombo;
+      feedbackEl.innerText = "✨ Hebat! Saraf decoding membacamu bekerja tepat!"; feedbackEl.className = "mt-6 text-lg font-bold h-6 text-teal-400 animate-pop";
+      confetti({particleCount: 25, spread: 40, origin: { y: 0.85 }});
+      units.forEach(u => updateStat(u, true));
+      if(readCombo % 5 === 0) setMascot("🚀", `Luar biasa! Pertahankan fokus combo x${readCombo}!`, true);
+      inputEl.disabled = true; document.getElementById("readCheckBtn").classList.add("hidden"); addGoal('read');
+      setTimeout(() => generateReadQuestion(), 700);
+    } else {
+      sound.wrong(); readCombo = 0; sequentialErrors++;
+      document.getElementById("readComboCount").innerText = "x0"; shakeEl(inputEl);
+      feedbackEl.innerText = "❌ Masih keliru. Bunyi lambang huruf tidak sesuai."; feedbackEl.className = "mt-6 text-lg font-bold h-6 text-red-400 animate-shake";
+      units.forEach(u => {
+          let statChar = u;
+          if (currentMode === "katakana") { let kObj = katakanaSet.find(k => k.romaji === hiraganaSet.find(h => h.char === u)?.romaji); statChar = kObj ? kObj.char : u; }
+          updateStat(statChar, false);
+      });
+      if(sequentialErrors >= 3) setMascot("😿", "Jangan panik. Coba tekan tombol '🔊 Dengar Bunyi' atau periksa '💡 Hint'.", true);
+    }
+  }
+
+  // ==================== CANVAS & HANDWRITING ====================
+  let currentStrokes = []; let activeStroke = []; let isTrackingPointer = false;
+  let canvas, ctx;
+  window.currentTierMode = "T2";
+  let writingTarget = null;
+  let totalStrokeCountDisplay = 0;
+
+  function initCanvas() {
+    canvas = document.getElementById("strokeCanvas");
+    if (!canvas) return;
+    let rect = canvas.getBoundingClientRect();
+    if(rect.width === 0) return;
+    
+    // Tetap pertahankan resolusi asli supaya logik matriks tidak pecah!
+    ctx = canvas.getContext("2d");
+    ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.lineWidth = 14; ctx.strokeStyle = "#ff9f1c";
+    
+    // Re-bind listeners cleanly
+    const newCanvas = canvas.cloneNode(true);
+    canvas.replaceWith(newCanvas);
+    canvas = document.getElementById("strokeCanvas");
+    ctx = canvas.getContext("2d");
+    ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.lineWidth = 14; ctx.strokeStyle = "#ff9f1c";
+    
+    canvas.addEventListener("pointerdown", handlePointerDown);
+    canvas.addEventListener("pointermove", handlePointerMove);
+    canvas.addEventListener("pointerup", handlePointerUp);
+    canvas.addEventListener("pointercancel", handlePointerCancel);
+    renderWriteList();
+  }
+
+  function handlePointerDown(e) {
+    e.preventDefault(); canvas.setPointerCapture(e.pointerId);
+    isTrackingPointer = true; activeStroke = [];
+    const pos = getPointerCoords(e); activeStroke.push({ x: pos.x, y: pos.y, t: Date.now() });
+    totalStrokeCountDisplay++; document.getElementById("strokeCountDisplay").innerText = totalStrokeCountDisplay;
+    renderCanvasFromState();
+  }
+  function handlePointerMove(e) { if (!isTrackingPointer) return; e.preventDefault(); const pos = getPointerCoords(e); activeStroke.push({ x: pos.x, y: pos.y, t: Date.now() }); renderCanvasFromState(); drawSingleStroke(activeStroke); }
+  function handlePointerUp(e) { if (!isTrackingPointer) return; e.preventDefault(); canvas.releasePointerCapture(e.pointerId); isTrackingPointer = false; if (activeStroke.length > 0) currentStrokes.push(activeStroke); activeStroke = []; renderCanvasFromState(); }
+  function handlePointerCancel() { isTrackingPointer = false; activeStroke = []; totalStrokeCountDisplay = Math.max(0, totalStrokeCountDisplay - 1); document.getElementById("strokeCountDisplay").innerText = totalStrokeCountDisplay; }
+  
+  // getPointerCoords otomatis menyesuaikan resolusi internal vs dimensi container CSS
+  function getPointerCoords(e) { 
+    const rect = canvas.getBoundingClientRect(); 
+    return { 
+      x: (e.clientX - rect.left) * (canvas.width / rect.width), 
+      y: (e.clientY - rect.top) * (canvas.height / rect.height) 
+    }; 
+  }
+  
+  function renderCanvasFromState() {
+    if (!ctx || !canvas) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (writingTarget && writingTarget.strokes && writingTarget.strokes.length > 0 && window.currentTierMode !== "T3") {
+      drawGhostTemplateVector(writingTarget.strokes);
+    }
+    currentStrokes.forEach(stroke => drawSingleStroke(stroke));
+  }
+  
+  function drawSingleStroke(stroke) { if (stroke.length < 1) return; ctx.lineWidth = 14; ctx.strokeStyle = "#ff9f1c"; ctx.beginPath(); ctx.moveTo(stroke[0].x, stroke[0].y); for (let i = 1; i < stroke.length; i++) ctx.lineTo(stroke[i].x, stroke[i].y); ctx.stroke(); }
+
+  function drawGhostTemplateVector(strokes) {
+    if (!strokes || !Array.isArray(strokes)) return;
+    ctx.save();
+    const scale = 2.2;
+    const offsetX = 35;
+    const offsetY = 20;
+
+    const getPt = (p) => {
+      const point = Array.isArray(p) ? { x: p[0], y: p[1] } : p;
+      return { x: point.x * scale + offsetX, y: point.y * scale + offsetY };
+    };
+
+    strokes.forEach((stroke, index) => {
+      if (!stroke || stroke.length < 2) return;
+      const start = getPt(stroke[0]);
+      ctx.beginPath();
+      if (window.currentTierMode === "T1") {
+        ctx.strokeStyle = "rgba(255,255,255,0.08)"; ctx.lineWidth = 14;
+      } else {
+        ctx.strokeStyle = "rgba(255,255,255,0.2)"; ctx.lineWidth = 2;
+      }
+      ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.moveTo(start.x, start.y);
+      for (let i = 1; i < stroke.length - 1; i++) {
+        const p1 = getPt(stroke[i]); const p2 = getPt(stroke[i + 1]);
+        const xc = (p1.x + p2.x) / 2; const yc = (p1.y + p2.y) / 2;
+        ctx.quadraticCurveTo(p1.x, p1.y, xc, yc);
+      }
+      const end = getPt(stroke[stroke.length - 1]);
+      ctx.lineTo(end.x, end.y); ctx.stroke();
+
+      if (window.currentTierMode === "T1") {
+        drawDot(ctx, start.x, start.y, "#10b981", 5);
+        drawDot(ctx, end.x, end.y, "#ef4444", 5);
+        if (stroke.length > 2) {
+          const mid = Math.floor(stroke.length / 2);
+          const p1 = getPt(stroke[mid - 1]); const p2 = getPt(stroke[mid]);
+          drawArrow(ctx, p1.x, p1.y, p2.x, p2.y, "rgba(255,255,255,0.5)");
+        }
+        ctx.fillStyle = "#ff9f1c"; ctx.font = "bold 14px Nunito";
+        ctx.fillText((index + 1).toString(), start.x - 15, start.y - 15);
+      }
+    });
+    ctx.restore();
+  }
+
+  function drawDot(ctx, x, y, color, radius) { ctx.beginPath(); ctx.arc(x, y, radius, 0, Math.PI*2); ctx.fillStyle = color; ctx.fill(); }
+  function drawArrow(ctx, fromX, fromY, toX, toY, color) { let headlen=10; let dx=toX-fromX, dy=toY-fromY; let angle=Math.atan2(dy,dx); ctx.beginPath(); ctx.strokeStyle=color; ctx.lineWidth=2; ctx.moveTo(toX,toY); ctx.lineTo(toX-headlen*Math.cos(angle-Math.PI/6),toY-headlen*Math.sin(angle-Math.PI/6)); ctx.moveTo(toX,toY); ctx.lineTo(toX-headlen*Math.cos(angle+Math.PI/6),toY-headlen*Math.sin(angle+Math.PI/6)); ctx.stroke(); }
+  function clearWritingCanvas() { sound.click(); currentStrokes = []; activeStroke = []; totalStrokeCountDisplay = 0; document.getElementById("strokeCountDisplay").innerText = 0; document.getElementById("writeResult").innerText = ""; if (ctx) renderCanvasFromState(); }
+  function setWriteLevelUI(tier) { window.currentTierMode = tier; let label = tier === "T1" ? "T1 Full Ghost" : (tier === "T2" ? "T2 Outline" : "T3 Blank Recall"); document.getElementById("writeTierDisplay").innerText = label; ['T1','T2','T3'].forEach(t => { let btn = document.getElementById(`tier${t}Btn`); if(t===tier) btn.className = "flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 text-black transition-all"; else btn.className = "flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-bold text-gray-400 hover:text-white transition-all"; }); }
+
+  function renderWriteList() {
+    let container = document.getElementById("writeCharList");
+    if (!container || currentKanaList.length === 0) return;
+    container.innerHTML = "";
+    let sortedKana = [...currentKanaList].sort((a, b) => {
+        let sa = userStats[currentMode]?.[a.char];
+        let sb = userStats[currentMode]?.[b.char];
+        let wA = (sa && sa.errors > sa.correct) ? 1 : (sa && sa.total > 0 ? 0 : 2);
+        let wB = (sb && sb.errors > sb.correct) ? 1 : (sb && sb.total > 0 ? 0 : 2);
+        return wB - wA;
+    });
+    sortedKana.forEach(k => {
+      let btn = document.createElement("button");
+      btn.innerText = k.char;
+      btn.className = "bg-[#2a2b38] border border-gray-700 hover:bg-amber-500 hover:text-black rounded-lg p-2 jp-font font-bold transition-colors text-base";
+      let stat = userStats[currentMode]?.[k.char];
+      if (stat && stat.errors > stat.correct) btn.classList.add("border-red-500", "text-red-300");
+      btn.onclick = () => {
+        const kanaDetail = kanaDataset.find(x => x.char === k.char);
+        writingTarget = {
+          ...k,
+          strokes: kanaDetail?.strokes || [],
+          directions: kanaDetail?.directions || [],
+          strokeCount: kanaDetail?.strokeCount || 0
+        };
+        document.getElementById("targetWriteChar").innerText = k.char;
+        document.getElementById("targetWriteRomaji").innerText = `(${k.romaji})`;
+        clearWritingCanvas();
+        sound.click();
+        speak(k.char);
+      };
+      container.appendChild(btn);
+    });
+    
+    if (!writingTarget && sortedKana.length > 0) {
+      const firstKana = sortedKana[0];
+      const kanaDetail = kanaDataset.find(x => x.char === firstKana.char);
+      writingTarget = { ...firstKana, strokes: kanaDetail?.strokes || [], directions: kanaDetail?.directions || [], strokeCount: kanaDetail?.strokeCount || 0 };
+    }
+    if (writingTarget) {
+      document.getElementById("targetWriteChar").innerText = writingTarget.char;
+      document.getElementById("targetWriteRomaji").innerText = `(${writingTarget.romaji})`;
+      clearWritingCanvas();
+    }
+  }
+
+  function validateCurrentHandwriting() {
+    let res = document.getElementById("writeResult");
+    if (currentStrokes.length === 0) { res.innerText = "⚠️ Kanvas masih kosong. Silakan tulis hurufnya dahulu."; res.className = "mt-4 text-sm font-bold text-center h-auto min-h-[4rem] w-full text-amber-400"; shakeEl(canvas); sound.wrong(); return; }
+    if (!writingTarget) return;
+
+    if (window.currentTierMode === "T1") {
+      res.innerHTML = `✅ <b>Sempurna!</b> Latihan otot yang bagus. Terus ikuti jalurnya!<br><span class="text-xs text-teal-200/70 font-normal mt-1 block">T1 Auto-Pass: Fokus pada gerakan & memori otot</span>`;
+      res.className = "mt-4 text-sm font-bold text-center h-auto min-h-[4rem] w-full text-teal-400 animate-pop flex flex-col justify-center";
+      setMascot("😸", `Bagus! Coba ingat bentuk dan arahnya ya! Lanjut!`, true);
+      sound.stamp(); addGoal('write'); confetti({particleCount: 20, spread: 30, origin: { y: 0.7 }});
+      updateStat(writingTarget.char, true);
+      setTimeout(() => { let idx = currentKanaList.findIndex(k => k.char === writingTarget.char); if(idx > -1 && idx < currentKanaList.length - 1) { let nextBtn = document.querySelectorAll("#writeCharList button")[idx + 1]; if(nextBtn) nextBtn.click(); } }, 1500);
+      return;
+    }
+
+    if (!kanaFeaturesDB || Object.keys(kanaFeaturesDB).length === 0) {
+        res.innerText = "⚠️ Data referensi features belum siap. Pastikan JSON berhasil dimuat."; return; 
+    }
+
+    const inputFeatures = FeatureExtractor.extract(currentStrokes);
+    const results = rankChar(inputFeatures, kanaFeaturesDB, 5);
+    const topMatch = results[0];
+    const finalScore = topMatch ? topMatch.score : 0;
+    const topMatchChar = topMatch ? String.fromCodePoint(parseInt(topMatch.char, 16)) : "?";
+
+    let requiredThreshold = (window.currentTierMode === "T2") ? 40 : 60;
+    if (topMatchChar === writingTarget.char && finalScore >= requiredThreshold) {
+        res.innerHTML = `✅ <b>Sempurna!</b> Goresan mengalir natural dan mudah dibaca.<br><span class="text-xs text-teal-200/70 font-normal mt-1 block">Kemiripan: ${finalScore}%</span>`;
+        res.className = "mt-4 text-sm font-bold text-center h-auto min-h-[4rem] w-full text-teal-400 animate-pop flex flex-col justify-center";
+        setMascot("😸", `Goresan huruf ${writingTarget.char} terbaca dengan jelas! Lanjut!`, true);
+        sound.stamp(); addGoal('write'); confetti({particleCount: 20, spread: 30, origin: { y: 0.7 }});
+        updateStat(writingTarget.char, true);
+        setTimeout(() => { let idx = currentKanaList.findIndex(k => k.char === writingTarget.char); if(idx > -1 && idx < currentKanaList.length - 1) { let nextBtn = document.querySelectorAll("#writeCharList button")[idx + 1]; if(nextBtn) nextBtn.click(); } }, 1500);
+    } else if (topMatchChar === writingTarget.char) {
+        res.innerHTML = `💡 <b>Hampir Tepat!</b> Bentuk dasarnya sudah terlihat, tapi arah atau proporsinya masih kaku.<br><span class="text-xs text-amber-200/70 font-normal mt-1 block">Kemiripan: ${finalScore}%</span>`;
+        setMascot("😿", `Bentuknya sudah mirip, tapi butuh sedikit diperbaiki lagi.`, false);
+        res.className = "mt-4 text-sm font-bold text-center h-auto min-h-[4rem] w-full text-amber-400 animate-shake flex flex-col justify-center";
+        shakeEl(canvas); sound.wrong(); updateStat(writingTarget.char, false);
+    } else {
+      res.innerHTML = `❌ <b>Belum Tepat!</b> Mesin mengira goresanmu adalah huruf lain.<br><span class="text-xs text-red-200/70 font-normal mt-1 block">Terbaca sebagai: ${topMatchChar} (${finalScore}%)</span>`;
+      setMascot("😾", `Coba perhatikan lagi panduan goresannya ya!`, false);
+      res.className = "mt-4 text-sm font-bold text-center h-auto min-h-[4rem] w-full text-red-400 animate-shake flex flex-col justify-center";
+      shakeEl(canvas); sound.wrong(); updateStat(writingTarget.char, false);
+    }
+  }
+
+  // ==================== SPEED RUSH ====================
+  let speedInterval, speedTimeLeft = 30, speedScore = 0, speedCurrent = null;
+  document.getElementById("startSpeedBtn").onclick = () => { sound.click(); document.getElementById("speedSetup").classList.add("hidden"); document.getElementById("speedGame").classList.remove("hidden"); startSpeedGame(); };
+  function startSpeedGame() { speedScore = 0; speedTimeLeft = 30; document.getElementById("speedScoreDisplay").innerText = speedScore; document.getElementById("speedTimer").innerText = speedTimeLeft; document.getElementById("speedOverlay").style.opacity = 1; nextSpeedQuestion(); speedInterval = setInterval(() => { speedTimeLeft--; document.getElementById("speedTimer").innerText = speedTimeLeft; let perc = (speedTimeLeft/30)*100; document.getElementById("speedTimeBar").style.width = `${perc}%`; if(speedTimeLeft <= 0) { clearInterval(speedInterval); endSpeedGame(); } }, 1000); }
+  function nextSpeedQuestion() { if(currentKanaList.length === 0) return; speedCurrent = getWeightedRandomKana(currentKanaList, userStats[currentMode] || {}); document.getElementById("speedChar").innerText = speedCurrent.char; let options = [speedCurrent.romaji]; while(options.length < 3) { let rand = currentKanaList[Math.floor(Math.random() * currentKanaList.length)].romaji; if(!options.includes(rand)) options.push(rand); } options.sort(() => Math.random() - 0.5); let container = document.getElementById("speedOptions"); container.innerHTML = ""; options.forEach(opt => { let btn = document.createElement("button"); btn.className = "btn-secondary py-3 rounded-xl text-lg font-bold"; btn.innerText = opt; btn.onclick = () => { if(opt === speedCurrent.romaji) { sound.correct(); speedScore += 100; document.getElementById("speedScoreDisplay").innerText = speedScore; nextSpeedQuestion(); } else { sound.wrong(); speedTimeLeft = Math.max(0, speedTimeLeft-2); document.getElementById("speedTimer").innerText = speedTimeLeft; shakeEl(document.getElementById("speedChar")); } }; container.appendChild(btn); }); }
+  function endSpeedGame() { document.getElementById("speedGame").classList.add("hidden"); document.getElementById("speedResult").classList.remove("hidden"); document.getElementById("speedFinalScore").innerText = speedScore; document.getElementById("speedOverlay").style.opacity = 0; addGoal('speed'); if(speedScore >= 600) { confetti({particleCount: 120, spread: 80}); setMascot("⚡", "Luar biasa! Kecepatan membaca refleks otakmu melesat cepat!", true); } else setMascot("😺", "Sesi evaluasi refleks selesai! Istirahatlah sejenak.", true); }
+  document.getElementById("retrySpeedBtn").onclick = () => { sound.click(); document.getElementById("speedResult").classList.add("hidden"); document.getElementById("speedSetup").classList.remove("hidden"); };
+
+  // ==================== VIEW ENGINE ====================
+  function showTab(tabId) { sound.click(); document.querySelectorAll('.tab-section').forEach(s => s.classList.add("hidden")); document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove("active-tab")); let activeBtn = document.querySelector(`[data-tab="${tabId}"]`); if(activeBtn) activeBtn.classList.add("active-tab"); let targetSection = document.getElementById(`${tabId}Section`); if(targetSection) targetSection.classList.remove("hidden"); if(tabId === "write") setTimeout(initCanvas, 40); if(tabId === "read") generateReadQuestion(); if(tabId === "kana") { if(!document.getElementById("quizPanel").classList.contains("hidden")) generateQuiz(); else updateFlashcard(); } }
+  function shakeEl(el) { if(!el) return; el.classList.remove("animate-shake"); void el.offsetWidth; el.classList.add("animate-shake"); }
+
+  // ==================== LOAD DATASET ====================
+ async function loadKanaDataset() {
+    try {
+      const response = await fetch('kana-data.json');
+      const rawData = await response.json();
+      kanaDataset = [];
+      for (const [hexKey, strokesRaw] of Object.entries(rawData)) {     
+        const charStr = String.fromCodePoint(parseInt(hexKey, 16));      
+        const formattedStrokes = strokesRaw.map(stroke => {
+          return kanaRecognizer.resampleStroke(stroke.map(p => ({ x: p.x, y: p.y })), 16);
+        });
+        const directions = strokesRaw.map(stroke => {
+          if (stroke.length < 2) return { dx: 0, dy: 0 };
+          const start = stroke[0]; const end = stroke[stroke.length - 1];
+          return { dx: end.x - start.x, dy: end.y - start.y };
+        });
+        kanaDataset.push({ char: charStr, strokeCount: strokesRaw.length, strokes: formattedStrokes, directions: directions });
+      }
+      console.log("✅ kana-data berhasil dimuat! Total huruf:", kanaDataset.length);
+    } catch (err) { console.error("Gagal load kana-data.json:", err); }
+  }
+
+  async function loadKanaFeaturesDataset() {
+    try {
+      const response = await fetch('kana-features-final.json');
+      kanaFeaturesDB = await response.json();
+      console.log("✅ kana-features-final.json berhasil dimuat!");
+    } catch (err) {
+      console.error("Gagal load kana-features-final.json:", err);
+    }
+  }
+
+  window.onload = async () => {
+    try {
+      const response = await fetch('teks.json');
+      if(!response.ok) throw new Error("Gagal mengambil teks.json.");
+      const data = await response.json();
+      hiraganaSet = data.hiraganaSet || [];
+      katakanaSet = data.katakanaSet || [];
+      readDataset = data.readDataset || [];
+      
+      await loadKanaDataset();
+      await loadKanaFeaturesDataset();
+      loadStats();
+      
+      let fullSet = currentMode === "hiragana" ? hiraganaSet : katakanaSet;
+      currentKanaList = getUnlockedKana(fullSet, userStats[currentMode] || {});
+
+      if (currentKanaList.length > 0) {
+        const firstKana = currentKanaList[0];
+        const kanaDetail = kanaDataset.find(x => x.char === firstKana.char);
+        writingTarget = {
+          ...firstKana,
+          strokes: kanaDetail?.strokes || [],
+          directions: kanaDetail?.directions || [],
+          strokeCount: kanaDetail?.strokeCount || 0
+        };
+      }
+
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', () => showTab(btn.dataset.tab)));
+      document.getElementById("readUserInput").addEventListener("keyup", function(event) { if(event.key === "Enter") { event.preventDefault(); if(!document.getElementById("readCheckBtn").classList.contains("hidden")) checkReadAnswer(); } });
+      document.body.addEventListener('click', function init() { if(audioCtx.state === 'suspended') audioCtx.resume(); document.body.removeEventListener('click', init); }, {once: true});
+      setTimeout(() => setMascot("😺", "Sistem Latih Siap! Pembaruan Mobile UI telah aktif.", true), 500);
+      applyMode(true);
+    } catch(err) { console.error("Bootstrap Error: ", err); alert("Gagal memuat database pelatihan dari teks.json! Pastikan server lokal Anda aktif."); }
+  };
+</script>
+</body>
+</html>

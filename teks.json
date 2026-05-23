@@ -1,0 +1,3650 @@
+{
+  "hiraganaSet": [
+    {"char":"あ","romaji":"a"},{"char":"い","romaji":"i"},{"char":"う","romaji":"u"},{"char":"え","romaji":"e"},{"char":"お","romaji":"o"},
+    {"char":"か","romaji":"ka"},{"char":"き","romaji":"ki"},{"char":"く","romaji":"ku"},{"char":"け","romaji":"ke"},{"char":"こ","romaji":"ko"},
+    {"char":"さ","romaji":"sa"},{"char":"し","romaji":"shi"},{"char":"す","romaji":"su"},{"char":"せ","romaji":"se"},{"char":"そ","romaji":"so"},
+    {"char":"た","romaji":"ta"},{"char":"ち","romaji":"chi"},{"char":"つ","romaji":"tsu"},{"char":"て","romaji":"te"},{"char":"と","romaji":"to"},
+    {"char":"な","romaji":"na"},{"char":"に","romaji":"ni"},{"char":"ぬ","romaji":"nu"},{"char":"ね","romaji":"no"},{"char":"の","romaji":"no"},
+    {"char":"は","romaji":"ha"},{"char":"ひ","romaji":"hi"},{"char":"ふ","romaji":"fu"},{"char":"へ","romaji":"he"},{"char":"ほ","romaji":"ho"},
+    {"char":"ま","romaji":"ma"},{"char":"み","romaji":"mi"},{"char":"む","romaji":"mu"},{"char":"め","romaji":"me"},{"char":"も","romaji":"mo"},
+    {"char":"や","romaji":"ya"},{"char":"ゆ","romaji":"yu"},{"char":"よ","romaji":"yo"},{"char":"ら","romaji":"ra"},{"char":"り","romaji":"ri"},
+    {"char":"る","romaji":"ru"},{"char":"れ","romaji":"re"},{"char":"ろ","romaji":"ro"},{"char":"わ","romaji":"wa"},{"char":"を","romaji":"wo"},{"char":"ん","romaji":"n"}
+  ],
+  "katakanaSet": [
+    {"char":"ア","romaji":"a"},{"char":"イ","romaji":"i"},{"char":"ウ","romaji":"u"},{"char":"エ","romaji":"e"},{"char":"オ","romaji":"o"},
+    {"char":"カ","romaji":"ka"},{"char":"キ","romaji":"ki"},{"char":"ク","romaji":"ku"},{"char":"ケ","romaji":"ke"},{"char":"コ","romaji":"ko"},
+    {"char":"サ","romaji":"sa"},{"char":"シ","romaji":"shi"},{"char":"ス","romaji":"su"},{"char":"セ","romaji":"se"},{"char":"ソ","romaji":"so"},
+    {"char":"タ","romaji":"ta"},{"char":"チ","romaji":"chi"},{"char":"ツ","romaji":"tsu"},{"char":"テ","romaji":"te"},{"char":"ト","romaji":"to"},
+    {"char":"ナ","romaji":"na"},{"char":"ニ","romaji":"ni"},{"char":"ヌ","romaji":"nu"},{"char":"ネ","romaji":"no"},{"char":"ノ","romaji":"no"},
+    {"char":"ハ","romaji":"ha"},{"char":"ヒ","romaji":"hi"},{"char":"フ","romaji":"fu"},{"char":"ヘ","romaji":"he"},{"char":"ホ","romaji":"ho"},
+    {"char":"マ","romaji":"ma"},{"char":"ミ","romaji":"mi"},{"char":"ム","romaji":"mu"},{"char":"メ","romaji":"me"},{"char":"モ","romaji":"mo"},
+    {"char":"ヤ","romaji":"ya"},{"char":"ユ","romaji":"yu"},{"char":"ヨ","romaji":"yo"},{"char":"ラ","romaji":"ra"},{"char":"リ","romaji":"ri"},
+    {"char":"ル","romaji":"ru"},{"char":"レ","romaji":"re"},{"char":"ロ","romaji":"ro"},{"char":"ワ","romaji":"wa"},{"char":"ヲ","romaji":"wo"},{"char":"ン","romaji":"n"}
+  ],
+  "readDataset": [
+    {
+      "hira": "あ",
+      "kata": "ア",
+      "romaji": "a",
+      "level": 1
+    },
+    {
+      "hira": "い",
+      "kata": "イ",
+      "romaji": "i",
+      "level": 1
+    },
+    {
+      "hira": "う",
+      "kata": "ウ",
+      "romaji": "u",
+      "level": 1
+    },
+    {
+      "hira": "え",
+      "kata": "エ",
+      "romaji": "e",
+      "level": 1
+    },
+    {
+      "hira": "お",
+      "kata": "オ",
+      "romaji": "o",
+      "level": 1
+    },
+    {
+      "hira": "か",
+      "kata": "カ",
+      "romaji": "ka",
+      "level": 1
+    },
+    {
+      "hira": "き",
+      "kata": "キ",
+      "romaji": "ki",
+      "level": 1
+    },
+    {
+      "hira": "く",
+      "kata": "ク",
+      "romaji": "ku",
+      "level": 1
+    },
+    {
+      "hira": "け",
+      "kata": "ケ",
+      "romaji": "ke",
+      "level": 1
+    },
+    {
+      "hira": "こ",
+      "kata": "コ",
+      "romaji": "ko",
+      "level": 1
+    },
+    {
+      "hira": "さ",
+      "kata": "サ",
+      "romaji": "sa",
+      "level": 1
+    },
+    {
+      "hira": "し",
+      "kata": "シ",
+      "romaji": "shi",
+      "level": 1
+    },
+    {
+      "hira": "す",
+      "kata": "ス",
+      "romaji": "su",
+      "level": 1
+    },
+    {
+      "hira": "せ",
+      "kata": "セ",
+      "romaji": "se",
+      "level": 1
+    },
+    {
+      "hira": "そ",
+      "kata": "ソ",
+      "romaji": "so",
+      "level": 1
+    },
+    {
+      "hira": "た",
+      "kata": "タ",
+      "romaji": "ta",
+      "level": 1
+    },
+    {
+      "hira": "ち",
+      "kata": "チ",
+      "romaji": "chi",
+      "level": 1
+    },
+    {
+      "hira": "つ",
+      "kata": "ツ",
+      "romaji": "tsu",
+      "level": 1
+    },
+    {
+      "hira": "て",
+      "kata": "テ",
+      "romaji": "te",
+      "level": 1
+    },
+    {
+      "hira": "と",
+      "kata": "ト",
+      "romaji": "to",
+      "level": 1
+    },
+    {
+      "hira": "な",
+      "kata": "ナ",
+      "romaji": "na",
+      "level": 1
+    },
+    {
+      "hira": "に",
+      "kata": "ニ",
+      "romaji": "ni",
+      "level": 1
+    },
+    {
+      "hira": "ぬ",
+      "kata": "ヌ",
+      "romaji": "nu",
+      "level": 1
+    },
+    {
+      "hira": "ね",
+      "kata": "ネ",
+      "romaji": "ne",
+      "level": 1
+    },
+    {
+      "hira": "の",
+      "kata": "ノ",
+      "romaji": "no",
+      "level": 1
+    },
+    {
+      "hira": "は",
+      "kata": "ハ",
+      "romaji": "ha",
+      "level": 1
+    },
+    {
+      "hira": "ひ",
+      "kata": "ヒ",
+      "romaji": "hi",
+      "level": 1
+    },
+    {
+      "hira": "ふ",
+      "kata": "フ",
+      "romaji": "fu",
+      "level": 1
+    },
+    {
+      "hira": "へ",
+      "kata": "ヘ",
+      "romaji": "he",
+      "level": 1
+    },
+    {
+      "hira": "ほ",
+      "kata": "ホ",
+      "romaji": "ho",
+      "level": 1
+    },
+    {
+      "hira": "ま",
+      "kata": "マ",
+      "romaji": "ma",
+      "level": 1
+    },
+    {
+      "hira": "み",
+      "kata": "ミ",
+      "romaji": "mi",
+      "level": 1
+    },
+    {
+      "hira": "む",
+      "kata": "ム",
+      "romaji": "mu",
+      "level": 1
+    },
+    {
+      "hira": "め",
+      "kata": "メ",
+      "romaji": "me",
+      "level": 1
+    },
+    {
+      "hira": "も",
+      "kata": "モ",
+      "romaji": "mo",
+      "level": 1
+    },
+    {
+      "hira": "や",
+      "kata": "ヤ",
+      "romaji": "ya",
+      "level": 1
+    },
+    {
+      "hira": "ゆ",
+      "kata": "ユ",
+      "romaji": "yu",
+      "level": 1
+    },
+    {
+      "hira": "よ",
+      "kata": "ヨ",
+      "romaji": "yo",
+      "level": 1
+    },
+    {
+      "hira": "ら",
+      "kata": "ラ",
+      "romaji": "ra",
+      "level": 1
+    },
+    {
+      "hira": "り",
+      "kata": "リ",
+      "romaji": "ri",
+      "level": 1
+    },
+    {
+      "hira": "る",
+      "kata": "ル",
+      "romaji": "ru",
+      "level": 1
+    },
+    {
+      "hira": "れ",
+      "kata": "レ",
+      "romaji": "re",
+      "level": 1
+    },
+    {
+      "hira": "ろ",
+      "kata": "ロ",
+      "romaji": "ro",
+      "level": 1
+    },
+    {
+      "hira": "わ",
+      "kata": "ワ",
+      "romaji": "wa",
+      "level": 1
+    },
+    {
+      "hira": "を",
+      "kata": "ヲ",
+      "romaji": "o",
+      "level": 1
+    },
+    {
+      "hira": "ん",
+      "kata": "ン",
+      "romaji": "n",
+      "level": 1
+    },
+    {
+      "hira": "が",
+      "kata": "ガ",
+      "romaji": "ga",
+      "level": 1
+    },
+    {
+      "hira": "ぎ",
+      "kata": "ギ",
+      "romaji": "gi",
+      "level": 1
+    },
+    {
+      "hira": "ぐ",
+      "kata": "グ",
+      "romaji": "gu",
+      "level": 1
+    },
+    {
+      "hira": "げ",
+      "kata": "ゲ",
+      "romaji": "ge",
+      "level": 1
+    },
+    {
+      "hira": "ご",
+      "kata": "ゴ",
+      "romaji": "go",
+      "level": 1
+    },
+    {
+      "hira": "ざ",
+      "kata": "ザ",
+      "romaji": "za",
+      "level": 1
+    },
+    {
+      "hira": "じ",
+      "kata": "ジ",
+      "romaji": "ji",
+      "level": 1
+    },
+    {
+      "hira": "ず",
+      "kata": "ズ",
+      "romaji": "zu",
+      "level": 1
+    },
+    {
+      "hira": "ぜ",
+      "kata": "ゼ",
+      "romaji": "ze",
+      "level": 1
+    },
+    {
+      "hira": "ぞ",
+      "kata": "ゾ",
+      "romaji": "zo",
+      "level": 1
+    },
+    {
+      "hira": "だ",
+      "kata": "ダ",
+      "romaji": "da",
+      "level": 1
+    },
+    {
+      "hira": "ぢ",
+      "kata": "ヂ",
+      "romaji": "ji",
+      "level": 1
+    },
+    {
+      "hira": "づ",
+      "kata": "ヅ",
+      "romaji": "zu",
+      "level": 1
+    },
+    {
+      "hira": "で",
+      "kata": "デ",
+      "romaji": "de",
+      "level": 1
+    },
+    {
+      "hira": "ど",
+      "kata": "ド",
+      "romaji": "do",
+      "level": 1
+    },
+    {
+      "hira": "ば",
+      "kata": "バ",
+      "romaji": "ba",
+      "level": 1
+    },
+    {
+      "hira": "び",
+      "kata": "ビ",
+      "romaji": "bi",
+      "level": 1
+    },
+    {
+      "hira": "ぶ",
+      "kata": "ブ",
+      "romaji": "bu",
+      "level": 1
+    },
+    {
+      "hira": "べ",
+      "kata": "ベ",
+      "romaji": "be",
+      "level": 1
+    },
+    {
+      "hira": "ぼ",
+      "kata": "ボ",
+      "romaji": "bo",
+      "level": 1
+    },
+    {
+      "hira": "ぱ",
+      "kata": "パ",
+      "romaji": "pa",
+      "level": 1
+    },
+    {
+      "hira": "ぴ",
+      "kata": "ピ",
+      "romaji": "pi",
+      "level": 1
+    },
+    {
+      "hira": "ぷ",
+      "kata": "プ",
+      "romaji": "pu",
+      "level": 1
+    },
+    {
+      "hira": "ぺ",
+      "kata": "ペ",
+      "romaji": "pe",
+      "level": 1
+    },
+    {
+      "hira": "ぽ",
+      "kata": "ポ",
+      "romaji": "po",
+      "level": 1
+    },
+    {
+      "hira": "きゃ",
+      "kata": "キャ",
+      "romaji": "kya",
+      "level": 1
+    },
+    {
+      "hira": "きゅ",
+      "kata": "キュ",
+      "romaji": "kyu",
+      "level": 1
+    },
+    {
+      "hira": "きょ",
+      "kata": "キョ",
+      "romaji": "kyo",
+      "level": 1
+    },
+    {
+      "hira": "しゃ",
+      "kata": "シャ",
+      "romaji": "sha",
+      "level": 1
+    },
+    {
+      "hira": "しゅ",
+      "kata": "シュ",
+      "romaji": "shu",
+      "level": 1
+    },
+    {
+      "hira": "しょ",
+      "kata": "ショ",
+      "romaji": "sho",
+      "level": 1
+    },
+    {
+      "hira": "ちゃ",
+      "kata": "チャ",
+      "romaji": "cha",
+      "level": 1
+    },
+    {
+      "hira": "ちゅ",
+      "kata": "チュ",
+      "romaji": "chu",
+      "level": 1
+    },
+    {
+      "hira": "ちょ",
+      "kata": "チョ",
+      "romaji": "cho",
+      "level": 1
+    },
+    {
+      "hira": "にゃ",
+      "kata": "ニャ",
+      "romaji": "nya",
+      "level": 1
+    },
+    {
+      "hira": "にゅ",
+      "kata": "ニュ",
+      "romaji": "nyu",
+      "level": 1
+    },
+    {
+      "hira": "にょ",
+      "kata": "ニョ",
+      "romaji": "nyo",
+      "level": 1
+    },
+    {
+      "hira": "ひゃ",
+      "kata": "ヒャ",
+      "romaji": "hya",
+      "level": 1
+    },
+    {
+      "hira": "ひゅ",
+      "kata": "ヒュ",
+      "romaji": "hyu",
+      "level": 1
+    },
+    {
+      "hira": "ひょ",
+      "kata": "ヒョ",
+      "romaji": "hyo",
+      "level": 1
+    },
+    {
+      "hira": "みゃ",
+      "kata": "ミャ",
+      "romaji": "mya",
+      "level": 1
+    },
+    {
+      "hira": "みゅ",
+      "kata": "ミュ",
+      "romaji": "myu",
+      "level": 1
+    },
+    {
+      "hira": "みょ",
+      "kata": "ミョ",
+      "romaji": "myo",
+      "level": 1
+    },
+    {
+      "hira": "りゃ",
+      "kata": "リャ",
+      "romaji": "rya",
+      "level": 1
+    },
+    {
+      "hira": "りゅ",
+      "kata": "リュ",
+      "romaji": "ryu",
+      "level": 1
+    },
+    {
+      "hira": "りょ",
+      "kata": "リョ",
+      "romaji": "ryo",
+      "level": 1
+    },
+    {
+      "hira": "ぎゃ",
+      "kata": "ギャ",
+      "romaji": "gya",
+      "level": 1
+    },
+    {
+      "hira": "ぎゅ",
+      "kata": "ギュ",
+      "romaji": "gyu",
+      "level": 1
+    },
+    {
+      "hira": "ぎょ",
+      "kata": "ギョ",
+      "romaji": "gyo",
+      "level": 1
+    },
+    {
+      "hira": "じゃ",
+      "kata": "ジャ",
+      "romaji": "ja",
+      "level": 1
+    },
+    {
+      "hira": "じゅ",
+      "kata": "ジュ",
+      "romaji": "ju",
+      "level": 1
+    },
+    {
+      "hira": "じょ",
+      "kata": "ジョ",
+      "romaji": "jo",
+      "level": 1
+    },
+    {
+      "hira": "びゃ",
+      "kata": "ビャ",
+      "romaji": "bya",
+      "level": 1
+    },
+    {
+      "hira": "びゅ",
+      "kata": "ビュ",
+      "romaji": "byu",
+      "level": 1
+    },
+    {
+      "hira": "びょ",
+      "kata": "ビョ",
+      "romaji": "byo",
+      "level": 1
+    },
+    {
+      "hira": "ぴゃ",
+      "kata": "ピャ",
+      "romaji": "pya",
+      "level": 1
+    },
+    {
+      "hira": "ぴゅ",
+      "kata": "ピュ",
+      "romaji": "pyu",
+      "level": 1
+    },
+    {
+      "hira": "ぴょ",
+      "kata": "ピョ",
+      "romaji": "pyo",
+      "level": 1
+    },
+    {
+      "hira": "いえ",
+      "kata": "イエ",
+      "romaji": "ie",
+      "level": 2
+    },
+    {
+      "hira": "あく",
+      "kata": "アク",
+      "romaji": "aku",
+      "level": 2
+    },
+    {
+      "hira": "そこ",
+      "kata": "ソコ",
+      "romaji": "soko",
+      "level": 2
+    },
+    {
+      "hira": "にち",
+      "kata": "ニチ",
+      "romaji": "nichi",
+      "level": 2
+    },
+    {
+      "hira": "ぶく",
+      "kata": "ブク",
+      "romaji": "buku",
+      "level": 3
+    },
+    {
+      "hira": "さて",
+      "kata": "サテ",
+      "romaji": "sate",
+      "level": 3
+    },
+    {
+      "hira": "すす",
+      "kata": "スス",
+      "romaji": "susu",
+      "level": 3
+    },
+    {
+      "hira": "こぴ",
+      "kata": "コピ",
+      "romaji": "kopi",
+      "level": 3
+    },
+    {
+      "hira": "たふ",
+      "kata": "タフ",
+      "romaji": "tafu",
+      "level": 3
+    },
+    {
+      "hira": "ろち",
+      "kata": "ロチ",
+      "romaji": "rochi",
+      "level": 3
+    },
+    {
+      "hira": "まかん",
+      "kata": "マカン",
+      "romaji": "makan",
+      "level": 3
+    },
+    {
+      "hira": "てんぽ",
+      "kata": "テンポ",
+      "romaji": "tempo",
+      "level": 3
+    },
+    {
+      "hira": "かむ",
+      "kata": "カム",
+      "romaji": "kamu",
+      "level": 3
+    },
+    {
+      "hira": "すか",
+      "kata": "スカ",
+      "romaji": "suka",
+      "level": 3
+    },
+    {
+      "hira": "にこ",
+      "kata": "ニコ",
+      "romaji": "niko",
+      "level": 3
+    },
+    {
+      "hira": "らじお",
+      "kata": "ラジオ",
+      "romaji": "rajio",
+      "level": 3
+    },
+    {
+      "hira": "てれび",
+      "kata": "テレビ",
+      "romaji": "terebi",
+      "level": 3
+    },
+    {
+      "hira": "ばす",
+      "kata": "バス",
+      "romaji": "basu",
+      "level": 3
+    },
+    {
+      "hira": "たんご",
+      "kata": "タンゴ",
+      "romaji": "tango",
+      "level": 3
+    },
+    {
+      "hira": "ぺん",
+      "kata": "ペン",
+      "romaji": "pen",
+      "level": 3
+    },
+    {
+      "hira": "ぎたー",
+      "kata": "ギター",
+      "romaji": "gitaa",
+      "level": 3
+    },
+    {
+      "hira": "ぶく ばる",
+      "kata": "ブク バル",
+      "romaji": "buku baru",
+      "level": 4
+    },
+    {
+      "hira": "こぴ すす",
+      "kata": "コピ スス",
+      "romaji": "kopi susu",
+      "level": 4
+    },
+    {
+      "hira": "さて たふ",
+      "kata": "サテ タフ",
+      "romaji": "sate tafu",
+      "level": 4
+    },
+    {
+      "hira": "ろち まか",
+      "kata": "ロチ マカ",
+      "romaji": "rochi maka",
+      "level": 4
+    },
+    {
+      "hira": "かむ すす",
+      "kata": "カム スス",
+      "romaji": "kamu susu",
+      "level": 4
+    },
+    {
+      "hira": "あく すか",
+      "kata": "アク スカ",
+      "romaji": "aku suka",
+      "level": 4
+    },
+    {
+      "hira": "らじお すか",
+      "kata": "ラジオ スカ",
+      "romaji": "rajio suka",
+      "level": 4
+    },
+    {
+      "hira": "てれび ばる",
+      "kata": "テレビ バル",
+      "romaji": "terebi baru",
+      "level": 4
+    },
+    {
+      "hira": "ばす すす",
+      "kata": "バス スス",
+      "romaji": "basu susu",
+      "level": 4
+    },
+    {
+      "hira": "たんご ぺん",
+      "kata": "タンゴ ペン",
+      "romaji": "tango pen",
+      "level": 4
+    },
+    {
+      "hira": "ぎたー すか",
+      "kata": "ギター スカ",
+      "romaji": "gitaa suka",
+      "level": 4
+    },
+    {
+      "hira": "あく まかん ろち",
+      "kata": "アク マカン ロチ",
+      "romaji": "aku makan rochi",
+      "level": 5
+    },
+    {
+      "hira": "あく こぴ まかん",
+      "kata": "アク コピ マカン",
+      "romaji": "aku kopi makan",
+      "level": 5
+    },
+    {
+      "hira": "ぶく ばる あく",
+      "kata": "ブク バル アク",
+      "romaji": "buku baru aku",
+      "level": 5
+    },
+    {
+      "hira": "あく まかん さて たふ",
+      "kata": "アク マカン サテ タフ",
+      "romaji": "aku makan sate tafu",
+      "level": 5
+    },
+    {
+      "hira": "かむ すか てれび",
+      "kata": "カム スカ テレビ",
+      "romaji": "kamu suka terebi",
+      "level": 5
+    },
+    {
+      "hira": "らじお ばす ぎたー",
+      "kata": "ラジオ バス ギター",
+      "romaji": "rajio basu gitaa",
+      "level": 5
+    },
+    {
+      "hira": "あく すか たんご ぺん",
+      "kata": "アク スカ タンゴ ペン",
+      "romaji": "aku suka tango pen",
+      "level": 5
+    },
+    {
+      "hira": "にこ まかん ろち すす",
+      "kata": "ニコ マカン ロチ スス",
+      "romaji": "niko makan rochi susu",
+      "level": 5
+    },
+    {
+      "hira": "あか",
+      "kata": "アカ",
+      "romaji": "aka",
+      "level": 2
+    },
+    {
+      "hira": "あお",
+      "kata": "アオ",
+      "romaji": "ao",
+      "level": 2
+    },
+    {
+      "hira": "くろ",
+      "kata": "クロ",
+      "romaji": "kuro",
+      "level": 2
+    },
+    {
+      "hira": "しろ",
+      "kata": "シロ",
+      "romaji": "shiro",
+      "level": 2
+    },
+    {
+      "hira": "きいろ",
+      "kata": "キイロ",
+      "romaji": "kiiro",
+      "level": 2
+    },
+    {
+      "hira": "みどり",
+      "kata": "ミドリ",
+      "romaji": "midori",
+      "level": 2
+    },
+    {
+      "hira": "ちゃいろ",
+      "kata": "チャイロ",
+      "romaji": "chairo",
+      "level": 2
+    },
+    {
+      "hira": "きい",
+      "kata": "キイ",
+      "romaji": "kii",
+      "level": 2
+    },
+    {
+      "hira": "よい",
+      "kata": "ヨイ",
+      "romaji": "yoi",
+      "level": 2
+    },
+    {
+      "hira": "わるい",
+      "kata": "ワルイ",
+      "romaji": "warui",
+      "level": 2
+    },
+    {
+      "hira": "やま",
+      "kata": "ヤマ",
+      "romaji": "yama",
+      "level": 2
+    },
+    {
+      "hira": "かわ",
+      "kata": "カワ",
+      "romaji": "kawa",
+      "level": 2
+    },
+    {
+      "hira": "うみ",
+      "kata": "ウミ",
+      "romaji": "umi",
+      "level": 2
+    },
+    {
+      "hira": "そら",
+      "kata": "ソラ",
+      "romaji": "sora",
+      "level": 2
+    },
+    {
+      "hira": "かぜ",
+      "kata": "カゼ",
+      "romaji": "kaze",
+      "level": 2
+    },
+    {
+      "hira": "あめ",
+      "kata": "アメ",
+      "romaji": "ame",
+      "level": 2
+    },
+    {
+      "hira": "ゆき",
+      "kata": "ユキ",
+      "romaji": "yuki",
+      "level": 2
+    },
+    {
+      "hira": "はな",
+      "kata": "ハナ",
+      "romaji": "hana",
+      "level": 2
+    },
+    {
+      "hira": "くさ",
+      "kata": "クサ",
+      "romaji": "kusa",
+      "level": 2
+    },
+    {
+      "hira": "つき",
+      "kata": "ツキ",
+      "romaji": "tsuki",
+      "level": 2
+    },
+    {
+      "hira": "いぬ",
+      "kata": "イヌ",
+      "romaji": "inu",
+      "level": 2
+    },
+    {
+      "hira": "ねこ",
+      "kata": "ネコ",
+      "romaji": "neko",
+      "level": 2
+    },
+    {
+      "hira": "とり",
+      "kata": "トリ",
+      "romaji": "tori",
+      "level": 2
+    },
+    {
+      "hira": "くま",
+      "kata": "クマ",
+      "romaji": "kuma",
+      "level": 2
+    },
+    {
+      "hira": "さる",
+      "kata": "サル",
+      "romaji": "saru",
+      "level": 2
+    },
+    {
+      "hira": "うし",
+      "kata": "ウシ",
+      "romaji": "ushi",
+      "level": 2
+    },
+    {
+      "hira": "うま",
+      "kata": "ウマ",
+      "romaji": "uma",
+      "level": 2
+    },
+    {
+      "hira": "しか",
+      "kata": "シカ",
+      "romaji": "shika",
+      "level": 2
+    },
+    {
+      "hira": "かに",
+      "kata": "カニ",
+      "romaji": "kani",
+      "level": 2
+    },
+    {
+      "hira": "たこ",
+      "kata": "タコ",
+      "romaji": "tako",
+      "level": 2
+    },
+    {
+      "hira": "め",
+      "kata": "メ",
+      "romaji": "me",
+      "level": 2
+    },
+    {
+      "hira": "みみ",
+      "kata": "ミミ",
+      "romaji": "mimi",
+      "level": 2
+    },
+    {
+      "hira": "はな",
+      "kata": "ハナ",
+      "romaji": "hana",
+      "level": 2
+    },
+    {
+      "hira": "くち",
+      "kata": "クチ",
+      "romaji": "kuchi",
+      "level": 2
+    },
+    {
+      "hira": "て",
+      "kata": "テ",
+      "romaji": "te",
+      "level": 2
+    },
+    {
+      "hira": "あし",
+      "kata": "アシ",
+      "romaji": "ashi",
+      "level": 2
+    },
+    {
+      "hira": "かみ",
+      "kata": "カミ",
+      "romaji": "kami",
+      "level": 2
+    },
+    {
+      "hira": "かお",
+      "kata": "カオ",
+      "romaji": "kao",
+      "level": 2
+    },
+    {
+      "hira": "くび",
+      "kata": "クビ",
+      "romaji": "kubi",
+      "level": 2
+    },
+    {
+      "hira": "こし",
+      "kata": "コシ",
+      "romaji": "koshi",
+      "level": 2
+    },
+    {
+      "hira": "みず",
+      "kata": "ミズ",
+      "romaji": "mizu",
+      "level": 2
+    },
+    {
+      "hira": "おちゃ",
+      "kata": "オチャ",
+      "romaji": "ocha",
+      "level": 2
+    },
+    {
+      "hira": "にく",
+      "kata": "ニク",
+      "romaji": "niku",
+      "level": 2
+    },
+    {
+      "hira": "こめ",
+      "kata": "コメ",
+      "romaji": "kome",
+      "level": 2
+    },
+    {
+      "hira": "まみ",
+      "kata": "マミ",
+      "romaji": "mami",
+      "level": 2
+    },
+    {
+      "hira": "ぱん",
+      "kata": "パン",
+      "romaji": "pan",
+      "level": 2
+    },
+    {
+      "hira": "しお",
+      "kata": "シオ",
+      "romaji": "shio",
+      "level": 2
+    },
+    {
+      "hira": "さと",
+      "kata": "サト",
+      "romaji": "sato",
+      "level": 2
+    },
+    {
+      "hira": "す",
+      "kata": "ス",
+      "romaji": "su",
+      "level": 2
+    },
+    {
+      "hira": "ごみ",
+      "kata": "ゴミ",
+      "romaji": "gomi",
+      "level": 2
+    },
+    {
+      "hira": "いく",
+      "kata": "イク",
+      "romaji": "iku",
+      "level": 2
+    },
+    {
+      "hira": "くる",
+      "kata": "クル",
+      "romaji": "kuru",
+      "level": 2
+    },
+    {
+      "hira": "たべ",
+      "kata": "タベ",
+      "romaji": "tabe",
+      "level": 2
+    },
+    {
+      "hira": "のみ",
+      "kata": "ノミ",
+      "romaji": "nomi",
+      "level": 2
+    },
+    {
+      "hira": "みる",
+      "kata": "ミル",
+      "romaji": "miru",
+      "level": 2
+    },
+    {
+      "hira": "きく",
+      "kata": "キク",
+      "romaji": "kiku",
+      "level": 2
+    },
+    {
+      "hira": "よむ",
+      "kata": "ヨム",
+      "romaji": "yomu",
+      "level": 2
+    },
+    {
+      "hira": "かく",
+      "kata": "カク",
+      "romaji": "kaku",
+      "level": 2
+    },
+    {
+      "hira": "かう",
+      "kata": "カウ",
+      "romaji": "kau",
+      "level": 2
+    },
+    {
+      "hira": "うる",
+      "kata": "ウル",
+      "romaji": "uru",
+      "level": 2
+    },
+    {
+      "hira": "みぬむ",
+      "kata": "ミヌム",
+      "romaji": "minumu",
+      "level": 3
+    },
+    {
+      "hira": "ばちゃ",
+      "kata": "バチャ",
+      "romaji": "bacha",
+      "level": 3
+    },
+    {
+      "hira": "ちゅち",
+      "kata": "チュチ",
+      "romaji": "chuchi",
+      "level": 3
+    },
+    {
+      "hira": "さぷ",
+      "kata": "サプ",
+      "romaji": "sapu",
+      "level": 3
+    },
+    {
+      "hira": "ぷくる",
+      "kata": "プクル",
+      "romaji": "pukuru",
+      "level": 3
+    },
+    {
+      "hira": "たりく",
+      "kata": "タリク",
+      "romaji": "tariku",
+      "level": 3
+    },
+    {
+      "hira": "とらく",
+      "kata": "トラク",
+      "romaji": "toraku",
+      "level": 3
+    },
+    {
+      "hira": "ばわ",
+      "kata": "バワ",
+      "romaji": "bawa",
+      "level": 3
+    },
+    {
+      "hira": "きりん",
+      "kata": "キリン",
+      "romaji": "kirin",
+      "level": 3
+    },
+    {
+      "hira": "まさく",
+      "kata": "マサク",
+      "romaji": "masaku",
+      "level": 3
+    },
+    {
+      "hira": "ぱさる",
+      "kata": "パサル",
+      "romaji": "pasaru",
+      "level": 3
+    },
+    {
+      "hira": "せこら",
+      "kata": "セコラ",
+      "romaji": "sekora",
+      "level": 3
+    },
+    {
+      "hira": "かんとる",
+      "kata": "カントル",
+      "romaji": "kantoru",
+      "level": 3
+    },
+    {
+      "hira": "たまん",
+      "kata": "タマン",
+      "romaji": "taman",
+      "level": 3
+    },
+    {
+      "hira": "るま",
+      "kata": "ルマ",
+      "romaji": "ruma",
+      "level": 3
+    },
+    {
+      "hira": "とこ",
+      "kata": "トコ",
+      "romaji": "toko",
+      "level": 3
+    },
+    {
+      "hira": "きじ",
+      "kata": "キジ",
+      "romaji": "kiji",
+      "level": 3
+    },
+    {
+      "hira": "こた",
+      "kata": "コタ",
+      "romaji": "kota",
+      "level": 3
+    },
+    {
+      "hira": "むら",
+      "kata": "ムラ",
+      "romaji": "mura",
+      "level": 3
+    },
+    {
+      "hira": "はて",
+      "kata": "ハテ",
+      "romaji": "hate",
+      "level": 3
+    },
+    {
+      "hira": "もびる",
+      "kata": "モビル",
+      "romaji": "mobiru",
+      "level": 3
+    },
+    {
+      "hira": "もとる",
+      "kata": "モトル",
+      "romaji": "motoru",
+      "level": 3
+    },
+    {
+      "hira": "せぺだ",
+      "kata": "セペダ",
+      "romaji": "sepeda",
+      "level": 3
+    },
+    {
+      "hira": "くるし",
+      "kata": "クルシ",
+      "romaji": "kurushi",
+      "level": 3
+    },
+    {
+      "hira": "めじゃ",
+      "kata": "メジャ",
+      "romaji": "meja",
+      "level": 3
+    },
+    {
+      "hira": "らんぷ",
+      "kata": "ランプ",
+      "romaji": "ranpu",
+      "level": 3
+    },
+    {
+      "hira": "きぱす",
+      "kata": "キパス",
+      "romaji": "kipasu",
+      "level": 3
+    },
+    {
+      "hira": "かちゃ",
+      "kata": "カチャ",
+      "romaji": "kacha",
+      "level": 3
+    },
+    {
+      "hira": "はこ",
+      "kata": "ハコ",
+      "romaji": "hako",
+      "level": 3
+    },
+    {
+      "hira": "ぱゆん",
+      "kata": "パユン",
+      "romaji": "payun",
+      "level": 3
+    },
+    {
+      "hira": "あいる",
+      "kata": "アイル",
+      "romaji": "airu",
+      "level": 3
+    },
+    {
+      "hira": "みー",
+      "kata": "ミー",
+      "romaji": "mii",
+      "level": 3
+    },
+    {
+      "hira": "なし",
+      "kata": "ナシ",
+      "romaji": "nashi",
+      "level": 3
+    },
+    {
+      "hira": "あやむ",
+      "kata": "アヤム",
+      "romaji": "ayamu",
+      "level": 3
+    },
+    {
+      "hira": "さぴ",
+      "kata": "サピ",
+      "romaji": "sapi",
+      "level": 3
+    },
+    {
+      "hira": "いかん",
+      "kata": "イカン",
+      "romaji": "ikan",
+      "level": 3
+    },
+    {
+      "hira": "ぶあ",
+      "kata": "ブア",
+      "romaji": "bua",
+      "level": 3
+    },
+    {
+      "hira": "さゆる",
+      "kata": "サユル",
+      "romaji": "sayuru",
+      "level": 3
+    },
+    {
+      "hira": "ぐら",
+      "kata": "グラ",
+      "romaji": "gura",
+      "level": 3
+    },
+    {
+      "hira": "がらむ",
+      "kata": "ガラム",
+      "romaji": "garamu",
+      "level": 3
+    },
+    {
+      "hira": "ばいく",
+      "kata": "バイク",
+      "romaji": "baiku",
+      "level": 3
+    },
+    {
+      "hira": "ぶるく",
+      "kata": "ブルク",
+      "romaji": "buruku",
+      "level": 3
+    },
+    {
+      "hira": "まはる",
+      "kata": "マハル",
+      "romaji": "maharu",
+      "level": 3
+    },
+    {
+      "hira": "ぱなす",
+      "kata": "パナス",
+      "romaji": "panasu",
+      "level": 3
+    },
+    {
+      "hira": "せじゅ",
+      "kata": "セジュ",
+      "romaji": "seju",
+      "level": 3
+    },
+    {
+      "hira": "べさる",
+      "kata": "ベサル",
+      "romaji": "besaru",
+      "level": 3
+    },
+    {
+      "hira": "けちる",
+      "kata": "ケチル",
+      "romaji": "kechiru",
+      "level": 3
+    },
+    {
+      "hira": "ばにゃく",
+      "kata": "バニャク",
+      "romaji": "banyaku",
+      "level": 3
+    },
+    {
+      "hira": "でぃきつ",
+      "kata": "ディキツ",
+      "romaji": "dikitsu",
+      "level": 3
+    },
+    {
+      "hira": "べら",
+      "kata": "ベラ",
+      "romaji": "bera",
+      "level": 3
+    },
+    {
+      "hira": "さや",
+      "kata": "サヤ",
+      "romaji": "saya",
+      "level": 3
+    },
+    {
+      "hira": "でぃあ",
+      "kata": "ディア",
+      "romaji": "dia",
+      "level": 3
+    },
+    {
+      "hira": "かみ",
+      "kata": "カミ",
+      "romaji": "kami",
+      "level": 3
+    },
+    {
+      "hira": "きた",
+      "kata": "キタ",
+      "romaji": "kita",
+      "level": 3
+    },
+    {
+      "hira": "めれか",
+      "kata": "メレカ",
+      "romaji": "mereka",
+      "level": 3
+    },
+    {
+      "hira": "いぶ",
+      "kata": "イブ",
+      "romaji": "ibu",
+      "level": 3
+    },
+    {
+      "hira": "ばぱく",
+      "kata": "バパク",
+      "romaji": "bapaku",
+      "level": 3
+    },
+    {
+      "hira": "あなく",
+      "kata": "アナク",
+      "romaji": "anaku",
+      "level": 3
+    },
+    {
+      "hira": "かかく",
+      "kata": "カカク",
+      "romaji": "kakaku",
+      "level": 3
+    },
+    {
+      "hira": "あでぃく",
+      "kata": "アディク",
+      "romaji": "adiku",
+      "level": 3
+    },
+    {
+      "hira": "はる",
+      "kata": "ハル",
+      "romaji": "haru",
+      "level": 3
+    },
+    {
+      "hira": "みんぐ",
+      "kata": "ミング",
+      "romaji": "mingu",
+      "level": 3
+    },
+    {
+      "hira": "ぶらん",
+      "kata": "ブラン",
+      "romaji": "buran",
+      "level": 3
+    },
+    {
+      "hira": "たふん",
+      "kata": "タフン",
+      "romaji": "tahun",
+      "level": 3
+    },
+    {
+      "hira": "ぱぎ",
+      "kata": "パギ",
+      "romaji": "pagi",
+      "level": 3
+    },
+    {
+      "hira": "しあん",
+      "kata": "シアン",
+      "romaji": "shian",
+      "level": 3
+    },
+    {
+      "hira": "そら",
+      "kata": "ソラ",
+      "romaji": "sora",
+      "level": 3
+    },
+    {
+      "hira": "まらむ",
+      "kata": "マラム",
+      "romaji": "maramu",
+      "level": 3
+    },
+    {
+      "hira": "べそく",
+      "kata": "ベソク",
+      "romaji": "besoku",
+      "level": 3
+    },
+    {
+      "hira": "けまりん",
+      "kata": "ケマリン",
+      "romaji": "kemarin",
+      "level": 3
+    },
+    {
+      "hira": "めら",
+      "kata": "メラ",
+      "romaji": "mera",
+      "level": 3
+    },
+    {
+      "hira": "びる",
+      "kata": "ビル",
+      "romaji": "biru",
+      "level": 3
+    },
+    {
+      "hira": "ひじゃう",
+      "kata": "ヒジャウ",
+      "romaji": "hijau",
+      "level": 3
+    },
+    {
+      "hira": "くにん",
+      "kata": "クニン",
+      "romaji": "kunin",
+      "level": 3
+    },
+    {
+      "hira": "ひたむ",
+      "kata": "ヒタム",
+      "romaji": "hitamu",
+      "level": 3
+    },
+    {
+      "hira": "ぷてぃ",
+      "kata": "プティ",
+      "romaji": "puti",
+      "level": 3
+    },
+    {
+      "hira": "ぽほん",
+      "kata": "ポホン",
+      "romaji": "pohon",
+      "level": 3
+    },
+    {
+      "hira": "だうん",
+      "kata": "ダウン",
+      "romaji": "daun",
+      "level": 3
+    },
+    {
+      "hira": "あぴ",
+      "kata": "アピ",
+      "romaji": "api",
+      "level": 3
+    },
+    {
+      "hira": "ばつ",
+      "kata": "バツ",
+      "romaji": "batsu",
+      "level": 3
+    },
+    {
+      "hira": "あぱ",
+      "kata": "アパ",
+      "romaji": "apa",
+      "level": 3
+    },
+    {
+      "hira": "しあぱ",
+      "kata": "シアパ",
+      "romaji": "shiapa",
+      "level": 3
+    },
+    {
+      "hira": "まな",
+      "kata": "マナ",
+      "romaji": "mana",
+      "level": 3
+    },
+    {
+      "hira": "かぱん",
+      "kata": "カパン",
+      "romaji": "kapan",
+      "level": 3
+    },
+    {
+      "hira": "くなぱ",
+      "kata": "クナパ",
+      "romaji": "kunapa",
+      "level": 3
+    },
+    {
+      "hira": "ぐまな",
+      "kata": "グマナ",
+      "romaji": "gumana",
+      "level": 3
+    },
+    {
+      "hira": "だり",
+      "kata": "ダリ",
+      "romaji": "dari",
+      "level": 3
+    },
+    {
+      "hira": "け",
+      "kata": "ケ",
+      "romaji": "ke",
+      "level": 3
+    },
+    {
+      "hira": "ぱだ",
+      "kata": "パダ",
+      "romaji": "pada",
+      "level": 3
+    },
+    {
+      "hira": "うんとぅ",
+      "kata": "ウントゥ",
+      "romaji": "untu",
+      "level": 3
+    },
+    {
+      "hira": "や",
+      "kata": "ヤ",
+      "romaji": "ya",
+      "level": 3
+    },
+    {
+      "hira": "てぃだく",
+      "kata": "ティダク",
+      "romaji": "tidaku",
+      "level": 3
+    },
+    {
+      "hira": "ぶかん",
+      "kata": "ブカン",
+      "romaji": "bukan",
+      "level": 3
+    },
+    {
+      "hira": "べろむ",
+      "kata": "ベロム",
+      "romaji": "beromu",
+      "level": 3
+    },
+    {
+      "hira": "すだ",
+      "kata": "スダ",
+      "romaji": "suda",
+      "level": 3
+    },
+    {
+      "hira": "せだん",
+      "kata": "セダン",
+      "romaji": "sedan",
+      "level": 3
+    },
+    {
+      "hira": "あかん",
+      "kata": "アカン",
+      "romaji": "akan",
+      "level": 3
+    },
+    {
+      "hira": "びさ",
+      "kata": "ビサ",
+      "romaji": "bisa",
+      "level": 3
+    },
+    {
+      "hira": "ぼれ",
+      "kata": "ボレ",
+      "romaji": "bore",
+      "level": 3
+    },
+    {
+      "hira": "はるす",
+      "kata": "ハルス",
+      "romaji": "harusu",
+      "level": 3
+    },
+    {
+      "hira": "さや まかん",
+      "kata": "サヤ マカン",
+      "romaji": "saya makan",
+      "level": 4
+    },
+    {
+      "hira": "さや みぬむ",
+      "kata": "サヤ ミヌム",
+      "romaji": "saya minumu",
+      "level": 4
+    },
+    {
+      "hira": "さや すか",
+      "kata": "サヤ スカ",
+      "romaji": "saya suka",
+      "level": 4
+    },
+    {
+      "hira": "さや ばちゃ",
+      "kata": "サヤ バチャ",
+      "romaji": "saya bacha",
+      "level": 4
+    },
+    {
+      "hira": "かむ まかん",
+      "kata": "カム マカン",
+      "romaji": "kamu makan",
+      "level": 4
+    },
+    {
+      "hira": "かむ みぬむ",
+      "kata": "カム ミヌム",
+      "romaji": "kamu minumu",
+      "level": 4
+    },
+    {
+      "hira": "かむ すか",
+      "kata": "カム スカ",
+      "romaji": "kamu suka",
+      "level": 4
+    },
+    {
+      "hira": "かむ ばちゃ",
+      "kata": "カム バチャ",
+      "romaji": "kamu bacha",
+      "level": 4
+    },
+    {
+      "hira": "でぃあ まかん",
+      "kata": "ディア マカン",
+      "romaji": "dia makan",
+      "level": 4
+    },
+    {
+      "hira": "でぃあ みぬむ",
+      "kata": "ディア ミヌム",
+      "romaji": "dia minumu",
+      "level": 4
+    },
+    {
+      "hira": "でぃあ すか",
+      "kata": "ディア スカ",
+      "romaji": "dia suka",
+      "level": 4
+    },
+    {
+      "hira": "でぃあ ばちゃ",
+      "kata": "ディア バチャ",
+      "romaji": "dia bacha",
+      "level": 4
+    },
+    {
+      "hira": "かみ まかん",
+      "kata": "カミ マカン",
+      "romaji": "kami makan",
+      "level": 4
+    },
+    {
+      "hira": "かみ みぬむ",
+      "kata": "カミ ミヌム",
+      "romaji": "kami minumu",
+      "level": 4
+    },
+    {
+      "hira": "かみ すか",
+      "kata": "カミ スカ",
+      "romaji": "kami suka",
+      "level": 4
+    },
+    {
+      "hira": "かみ ばちゃ",
+      "kata": "カミ バチャ",
+      "romaji": "kami bacha",
+      "level": 4
+    },
+    {
+      "hira": "めれか まかん",
+      "kata": "メレカ マカン",
+      "romaji": "mereka makan",
+      "level": 4
+    },
+    {
+      "hira": "めれか みぬむ",
+      "kata": "メレカ ミヌム",
+      "romaji": "mereka minumu",
+      "level": 4
+    },
+    {
+      "hira": "めれか すか",
+      "kata": "メレカ スカ",
+      "romaji": "mereka suka",
+      "level": 4
+    },
+    {
+      "hira": "めれか ばちゃ",
+      "kata": "メレカ バチャ",
+      "romaji": "mereka bacha",
+      "level": 4
+    },
+    {
+      "hira": "ぶく ばる",
+      "kata": "ブク バル",
+      "romaji": "buku baru",
+      "level": 4
+    },
+    {
+      "hira": "ぶく らま",
+      "kata": "ブク ラマ",
+      "romaji": "buku rama",
+      "level": 4
+    },
+    {
+      "hira": "ぶく まはる",
+      "kata": "ブク マハル",
+      "romaji": "buku maharu",
+      "level": 4
+    },
+    {
+      "hira": "ぶく むら",
+      "kata": "ブク ムラ",
+      "romaji": "buku mura",
+      "level": 4
+    },
+    {
+      "hira": "ぶく べさる",
+      "kata": "ブク ベサル",
+      "romaji": "buku besaru",
+      "level": 4
+    },
+    {
+      "hira": "こぴ ばる",
+      "kata": "コピ バル",
+      "romaji": "kopi baru",
+      "level": 4
+    },
+    {
+      "hira": "こぴ らま",
+      "kata": "コピ ラマ",
+      "romaji": "kopi rama",
+      "level": 4
+    },
+    {
+      "hira": "こぴ まはる",
+      "kata": "コピ マハル",
+      "romaji": "kopi maharu",
+      "level": 4
+    },
+    {
+      "hira": "こぴ むら",
+      "kata": "コピ ムラ",
+      "romaji": "kopi mura",
+      "level": 4
+    },
+    {
+      "hira": "こぴ べさる",
+      "kata": "コピ ベサル",
+      "romaji": "kopi besaru",
+      "level": 4
+    },
+    {
+      "hira": "ばじゅ ばる",
+      "kata": "バジュ バル",
+      "romaji": "baju baru",
+      "level": 4
+    },
+    {
+      "hira": "ばじゅ らま",
+      "kata": "バジュ ラマ",
+      "romaji": "baju rama",
+      "level": 4
+    },
+    {
+      "hira": "ばじゅ まはる",
+      "kata": "バジュ マハル",
+      "romaji": "baju maharu",
+      "level": 4
+    },
+    {
+      "hira": "ばじゅ むら",
+      "kata": "バジュ ムラ",
+      "romaji": "baju mura",
+      "level": 4
+    },
+    {
+      "hira": "ばじゅ べさる",
+      "kata": "バジュ ベサル",
+      "romaji": "baju besaru",
+      "level": 4
+    },
+    {
+      "hira": "せぱつ ばる",
+      "kata": "セパツ バル",
+      "romaji": "sepatsu baru",
+      "level": 4
+    },
+    {
+      "hira": "せぱつ らま",
+      "kata": "セパツ ラマ",
+      "romaji": "sepatsu rama",
+      "level": 4
+    },
+    {
+      "hira": "せぱつ まはる",
+      "kata": "セパツ マハル",
+      "romaji": "sepatsu maharu",
+      "level": 4
+    },
+    {
+      "hira": "せぱつ むら",
+      "kata": "セパツ ムラ",
+      "romaji": "sepatsu mura",
+      "level": 4
+    },
+    {
+      "hira": "せぱつ べさる",
+      "kata": "セパツ ベサル",
+      "romaji": "sepatsu besaru",
+      "level": 4
+    },
+    {
+      "hira": "もびる ばる",
+      "kata": "モビル バル",
+      "romaji": "mobiru baru",
+      "level": 4
+    },
+    {
+      "hira": "もびる らま",
+      "kata": "モビル ラマ",
+      "romaji": "mobiru rama",
+      "level": 4
+    },
+    {
+      "hira": "もびる まはる",
+      "kata": "モビル マハル",
+      "romaji": "mobiru maharu",
+      "level": 4
+    },
+    {
+      "hira": "もびる むら",
+      "kata": "モビル ムラ",
+      "romaji": "mobiru mura",
+      "level": 4
+    },
+    {
+      "hira": "もびる べさる",
+      "kata": "モビル ベサル",
+      "romaji": "mobiru besaru",
+      "level": 4
+    },
+    {
+      "hira": "るま ばる",
+      "kata": "ルマ バル",
+      "romaji": "ruma baru",
+      "level": 4
+    },
+    {
+      "hira": "るま らま",
+      "kata": "ルマ ラマ",
+      "romaji": "ruma rama",
+      "level": 4
+    },
+    {
+      "hira": "るま まはる",
+      "kata": "ルマ マハル",
+      "romaji": "ruma maharu",
+      "level": 4
+    },
+    {
+      "hira": "るま むら",
+      "kata": "ルマ ムラ",
+      "romaji": "ruma mura",
+      "level": 4
+    },
+    {
+      "hira": "るま べさる",
+      "kata": "ルマ ベサル",
+      "romaji": "ruma besaru",
+      "level": 4
+    },
+    {
+      "hira": "まかん なし",
+      "kata": "マカン ナシ",
+      "romaji": "makan nashi",
+      "level": 4
+    },
+    {
+      "hira": "まかん あいる",
+      "kata": "マカン アイル",
+      "romaji": "makan airu",
+      "level": 4
+    },
+    {
+      "hira": "まかん ぶく",
+      "kata": "マカン ブク",
+      "romaji": "makan buku",
+      "level": 4
+    },
+    {
+      "hira": "まかん ばじゅ",
+      "kata": "マカン バジュ",
+      "romaji": "makan baju",
+      "level": 4
+    },
+    {
+      "hira": "まかん こぴ",
+      "kata": "マカン コピ",
+      "romaji": "makan kopi",
+      "level": 4
+    },
+    {
+      "hira": "まかん さて",
+      "kata": "マカン サテ",
+      "romaji": "makan sate",
+      "level": 4
+    },
+    {
+      "hira": "まかん たふ",
+      "kata": "マカン タフ",
+      "romaji": "makan tafu",
+      "level": 4
+    },
+    {
+      "hira": "まかん ろち",
+      "kata": "マカン ロチ",
+      "romaji": "makan rochi",
+      "level": 4
+    },
+    {
+      "hira": "まかん いかん",
+      "kata": "マカン イカン",
+      "romaji": "makan ikan",
+      "level": 4
+    },
+    {
+      "hira": "まかん あやむ",
+      "kata": "マカン アヤム",
+      "romaji": "makan ayamu",
+      "level": 4
+    },
+    {
+      "hira": "みぬむ なし",
+      "kata": "ミヌム ナシ",
+      "romaji": "minumu nashi",
+      "level": 4
+    },
+    {
+      "hira": "みぬむ あいる",
+      "kata": "ミヌム アイル",
+      "romaji": "minumu airu",
+      "level": 4
+    },
+    {
+      "hira": "みぬむ ぶく",
+      "kata": "ミヌム ブク",
+      "romaji": "minumu buku",
+      "level": 4
+    },
+    {
+      "hira": "みぬむ ばじゅ",
+      "kata": "ミヌム バジュ",
+      "romaji": "minumu baju",
+      "level": 4
+    },
+    {
+      "hira": "みぬむ こぴ",
+      "kata": "ミヌム コピ",
+      "romaji": "minumu kopi",
+      "level": 4
+    },
+    {
+      "hira": "みぬむ さて",
+      "kata": "ミヌム サテ",
+      "romaji": "minumu sate",
+      "level": 4
+    },
+    {
+      "hira": "みぬむ たふ",
+      "kata": "ミヌム タフ",
+      "romaji": "minumu tafu",
+      "level": 4
+    },
+    {
+      "hira": "みぬむ ろち",
+      "kata": "ミヌム ロチ",
+      "romaji": "minumu rochi",
+      "level": 4
+    },
+    {
+      "hira": "みぬむ いかん",
+      "kata": "ミヌム イカン",
+      "romaji": "minumu ikan",
+      "level": 4
+    },
+    {
+      "hira": "みぬむ あやむ",
+      "kata": "ミヌム アヤム",
+      "romaji": "minumu ayamu",
+      "level": 4
+    },
+    {
+      "hira": "ばちゃ なし",
+      "kata": "バチャ ナシ",
+      "romaji": "bacha nashi",
+      "level": 4
+    },
+    {
+      "hira": "ばちゃ あいる",
+      "kata": "バチャ アイル",
+      "romaji": "bacha airu",
+      "level": 4
+    },
+    {
+      "hira": "ばちゃ ぶく",
+      "kata": "バチャ ブク",
+      "romaji": "bacha buku",
+      "level": 4
+    },
+    {
+      "hira": "ばちゃ ばじゅ",
+      "kata": "バチャ バジュ",
+      "romaji": "bacha baju",
+      "level": 4
+    },
+    {
+      "hira": "ばちゃ こぴ",
+      "kata": "バチャ コピ",
+      "romaji": "bacha kopi",
+      "level": 4
+    },
+    {
+      "hira": "ばちゃ さて",
+      "kata": "バチャ サテ",
+      "romaji": "bacha sate",
+      "level": 4
+    },
+    {
+      "hira": "ばちゃ たふ",
+      "kata": "バチャ タフ",
+      "romaji": "bacha tafu",
+      "level": 4
+    },
+    {
+      "hira": "ばちゃ ろち",
+      "kata": "バチャ ロチ",
+      "romaji": "bacha rochi",
+      "level": 4
+    },
+    {
+      "hira": "ばちゃ いかん",
+      "kata": "バチャ イカン",
+      "romaji": "bacha ikan",
+      "level": 4
+    },
+    {
+      "hira": "ばちゃ あやむ",
+      "kata": "バチャ アヤム",
+      "romaji": "bacha ayamu",
+      "level": 4
+    },
+    {
+      "hira": "べり なし",
+      "kata": "ベリ ナシ",
+      "romaji": "beri nashi",
+      "level": 4
+    },
+    {
+      "hira": "べり あいる",
+      "kata": "ベリ アイル",
+      "romaji": "beri airu",
+      "level": 4
+    },
+    {
+      "hira": "べり ぶく",
+      "kata": "ベリ ブク",
+      "romaji": "beri buku",
+      "level": 4
+    },
+    {
+      "hira": "べり ばじゅ",
+      "kata": "ベリ バジュ",
+      "romaji": "beri baju",
+      "level": 4
+    },
+    {
+      "hira": "べり こぴ",
+      "kata": "ベリ コピ",
+      "romaji": "beri kopi",
+      "level": 4
+    },
+    {
+      "hira": "べり さて",
+      "kata": "ベリ サテ",
+      "romaji": "beri sate",
+      "level": 4
+    },
+    {
+      "hira": "べり たふ",
+      "kata": "ベリ タフ",
+      "romaji": "beri tafu",
+      "level": 4
+    },
+    {
+      "hira": "べり ろち",
+      "kata": "ベリ ロチ",
+      "romaji": "beri rochi",
+      "level": 4
+    },
+    {
+      "hira": "べり いかん",
+      "kata": "ベリ イカン",
+      "romaji": "beri ikan",
+      "level": 4
+    },
+    {
+      "hira": "べり あやむ",
+      "kata": "ベリ アヤム",
+      "romaji": "beri ayamu",
+      "level": 4
+    },
+    {
+      "hira": "ぶく さや",
+      "kata": "ブク サヤ",
+      "romaji": "buku saya",
+      "level": 4
+    },
+    {
+      "hira": "ぶく かむ",
+      "kata": "ブク カム",
+      "romaji": "buku kamu",
+      "level": 4
+    },
+    {
+      "hira": "ぶく でぃあ",
+      "kata": "ブク ディア",
+      "romaji": "buku dia",
+      "level": 4
+    },
+    {
+      "hira": "ぶく にこ",
+      "kata": "ブク ニコ",
+      "romaji": "buku niko",
+      "level": 4
+    },
+    {
+      "hira": "ぶく みか",
+      "kata": "ブク ミカ",
+      "romaji": "buku mika",
+      "level": 4
+    },
+    {
+      "hira": "ぶく ばぱく",
+      "kata": "ブク バパク",
+      "romaji": "buku bapaku",
+      "level": 4
+    },
+    {
+      "hira": "ぶく いぶ",
+      "kata": "ブク イブ",
+      "romaji": "buku ibu",
+      "level": 4
+    },
+    {
+      "hira": "ぶく ぐる",
+      "kata": "ブク グル",
+      "romaji": "buku guru",
+      "level": 4
+    },
+    {
+      "hira": "ぶく あなく",
+      "kata": "ブク アナク",
+      "romaji": "buku anaku",
+      "level": 4
+    },
+    {
+      "hira": "ぶく ともだち",
+      "kata": "ブク トモダチ",
+      "romaji": "buku tomodachi",
+      "level": 4
+    },
+    {
+      "hira": "こぴ さや",
+      "kata": "コピ サヤ",
+      "romaji": "kopi saya",
+      "level": 4
+    },
+    {
+      "hira": "こぴ かむ",
+      "kata": "コピ カム",
+      "romaji": "kopi kamu",
+      "level": 4
+    },
+    {
+      "hira": "こぴ でぃあ",
+      "kata": "コピ ディア",
+      "romaji": "kopi dia",
+      "level": 4
+    },
+    {
+      "hira": "こぴ にこ",
+      "kata": "コピ ニコ",
+      "romaji": "kopi niko",
+      "level": 4
+    },
+    {
+      "hira": "こぴ みか",
+      "kata": "コピ ミカ",
+      "romaji": "kopi mika",
+      "level": 4
+    },
+    {
+      "hira": "こぴ ばぱく",
+      "kata": "コピ バパク",
+      "romaji": "kopi bapaku",
+      "level": 4
+    },
+    {
+      "hira": "こぴ いぶ",
+      "kata": "コピ イブ",
+      "romaji": "kopi ibu",
+      "level": 4
+    },
+    {
+      "hira": "こぴ ぐる",
+      "kata": "コピ グル",
+      "romaji": "kopi guru",
+      "level": 4
+    },
+    {
+      "hira": "こぴ あなく",
+      "kata": "コピ アナク",
+      "romaji": "kopi anaku",
+      "level": 4
+    },
+    {
+      "hira": "こぴ ともだち",
+      "kata": "コピ トモダチ",
+      "romaji": "kopi tomodachi",
+      "level": 4
+    },
+    {
+      "hira": "るま さや",
+      "kata": "ルマ サヤ",
+      "romaji": "ruma saya",
+      "level": 4
+    },
+    {
+      "hira": "るま かむ",
+      "kata": "ルマ カム",
+      "romaji": "ruma kamu",
+      "level": 4
+    },
+    {
+      "hira": "るま でぃあ",
+      "kata": "ルマ ディア",
+      "romaji": "ruma dia",
+      "level": 4
+    },
+    {
+      "hira": "るま にこ",
+      "kata": "ルマ ニコ",
+      "romaji": "ruma niko",
+      "level": 4
+    },
+    {
+      "hira": "るま みか",
+      "kata": "ルマ ミカ",
+      "romaji": "ruma mika",
+      "level": 4
+    },
+    {
+      "hira": "るま ばぱく",
+      "kata": "ルマ バパク",
+      "romaji": "ruma bapaku",
+      "level": 4
+    },
+    {
+      "hira": "るま いぶ",
+      "kata": "ルマ イブ",
+      "romaji": "ruma ibu",
+      "level": 4
+    },
+    {
+      "hira": "るま ぐる",
+      "kata": "ルマ グル",
+      "romaji": "ruma guru",
+      "level": 4
+    },
+    {
+      "hira": "るま あなく",
+      "kata": "ルマ アナク",
+      "romaji": "ruma anaku",
+      "level": 4
+    },
+    {
+      "hira": "るま ともだち",
+      "kata": "ルマ トモダチ",
+      "romaji": "ruma tomodachi",
+      "level": 4
+    },
+    {
+      "hira": "もびる さや",
+      "kata": "モビル サヤ",
+      "romaji": "mobiru saya",
+      "level": 4
+    },
+    {
+      "hira": "もびる かむ",
+      "kata": "モビル カム",
+      "romaji": "mobiru kamu",
+      "level": 4
+    },
+    {
+      "hira": "もびる でぃあ",
+      "kata": "モビル ディア",
+      "romaji": "mobiru dia",
+      "level": 4
+    },
+    {
+      "hira": "もびる にこ",
+      "kata": "モビル ニコ",
+      "romaji": "mobiru niko",
+      "level": 4
+    },
+    {
+      "hira": "もびる みか",
+      "kata": "モビル ミカ",
+      "romaji": "mobiru mika",
+      "level": 4
+    },
+    {
+      "hira": "もびる ばぱく",
+      "kata": "モビル バパク",
+      "romaji": "mobiru bapaku",
+      "level": 4
+    },
+    {
+      "hira": "もびる いぶ",
+      "kata": "モビル イブ",
+      "romaji": "mobiru ibu",
+      "level": 4
+    },
+    {
+      "hira": "もびる ぐる",
+      "kata": "モビル グル",
+      "romaji": "mobiru guru",
+      "level": 4
+    },
+    {
+      "hira": "もびる あなく",
+      "kata": "モビル アナク",
+      "romaji": "mobiru anaku",
+      "level": 4
+    },
+    {
+      "hira": "もびる ともだち",
+      "kata": "モビル トモダチ",
+      "romaji": "mobiru tomodachi",
+      "level": 4
+    },
+    {
+      "hira": "か ぱさる",
+      "kata": "カ パサル",
+      "romaji": "ka pasaru",
+      "level": 4
+    },
+    {
+      "hira": "か せこら",
+      "kata": "カ セコラ",
+      "romaji": "ka sekora",
+      "level": 4
+    },
+    {
+      "hira": "か かんとる",
+      "kata": "カ カントル",
+      "romaji": "ka kantoru",
+      "level": 4
+    },
+    {
+      "hira": "か たまん",
+      "kata": "カ タマン",
+      "romaji": "ka taman",
+      "level": 4
+    },
+    {
+      "hira": "か るま",
+      "kata": "カ ルマ",
+      "romaji": "ka ruma",
+      "level": 4
+    },
+    {
+      "hira": "だり ぱさる",
+      "kata": "ダリ パサル",
+      "romaji": "dari pasaru",
+      "level": 4
+    },
+    {
+      "hira": "だり せこら",
+      "kata": "ダリ セコラ",
+      "romaji": "dari sekora",
+      "level": 4
+    },
+    {
+      "hira": "だり かんとる",
+      "kata": "ダリ カントル",
+      "romaji": "dari kantoru",
+      "level": 4
+    },
+    {
+      "hira": "だり たまん",
+      "kata": "ダリ タマン",
+      "romaji": "dari taman",
+      "level": 4
+    },
+    {
+      "hira": "だり るま",
+      "kata": "ダリ ルマ",
+      "romaji": "dari ruma",
+      "level": 4
+    },
+    {
+      "hira": "はり いに",
+      "kata": "ハリ イニ",
+      "romaji": "hari ini",
+      "level": 4
+    },
+    {
+      "hira": "はり いとぅ",
+      "kata": "ハリ イトゥ",
+      "romaji": "hari itu",
+      "level": 4
+    },
+    {
+      "hira": "みんぐ いに",
+      "kata": "ミング イニ",
+      "romaji": "mingu ini",
+      "level": 4
+    },
+    {
+      "hira": "みんぐ いとぅ",
+      "kata": "ミング イトゥ",
+      "romaji": "mingu itu",
+      "level": 4
+    },
+    {
+      "hira": "ぶらん いに",
+      "kata": "ブラン イニ",
+      "romaji": "buran ini",
+      "level": 4
+    },
+    {
+      "hira": "ぶらん いとぅ",
+      "kata": "ブラン イトゥ",
+      "romaji": "buran itu",
+      "level": 4
+    },
+    {
+      "hira": "たふん いに",
+      "kata": "タフン イニ",
+      "romaji": "tahun ini",
+      "level": 4
+    },
+    {
+      "hira": "たふん いとぅ",
+      "kata": "タフン イトゥ",
+      "romaji": "tahun itu",
+      "level": 4
+    },
+    {
+      "hira": "ぱぎ いに",
+      "kata": "パギ イニ",
+      "romaji": "pagi ini",
+      "level": 4
+    },
+    {
+      "hira": "まらむ いに",
+      "kata": "マラム イニ",
+      "romaji": "maramu ini",
+      "level": 4
+    },
+    {
+      "hira": "さや まかん なし",
+      "kata": "サヤ マカン ナシ",
+      "romaji": "saya makan nashi",
+      "level": 5
+    },
+    {
+      "hira": "さや まかん さて",
+      "kata": "サヤ マカン サテ",
+      "romaji": "saya makan sate",
+      "level": 5
+    },
+    {
+      "hira": "さや まかん たふ",
+      "kata": "サヤ マカン タフ",
+      "romaji": "saya makan tafu",
+      "level": 5
+    },
+    {
+      "hira": "さや まかん ろち",
+      "kata": "サヤ マカン ロチ",
+      "romaji": "saya makan rochi",
+      "level": 5
+    },
+    {
+      "hira": "さや まかん あやむ",
+      "kata": "サヤ マカン アヤム",
+      "romaji": "saya makan ayamu",
+      "level": 5
+    },
+    {
+      "hira": "さや まかん いかん",
+      "kata": "サヤ マカン イカン",
+      "romaji": "saya makan ikan",
+      "level": 5
+    },
+    {
+      "hira": "さや まかん こぴ",
+      "kata": "サヤ マカン コピ",
+      "romaji": "saya makan kopi",
+      "level": 5
+    },
+    {
+      "hira": "さや まかん すす",
+      "kata": "サヤ マカン スス",
+      "romaji": "saya makan susu",
+      "level": 5
+    },
+    {
+      "hira": "さや まかん あいる",
+      "kata": "サヤ マカン アイル",
+      "romaji": "saya makan airu",
+      "level": 5
+    },
+    {
+      "hira": "さや まかん みー",
+      "kata": "サヤ マカン ミー",
+      "romaji": "saya makan mii",
+      "level": 5
+    },
+    {
+      "hira": "かむ まかん なし",
+      "kata": "カム マカン ナシ",
+      "romaji": "kamu makan nashi",
+      "level": 5
+    },
+    {
+      "hira": "かむ まかん さて",
+      "kata": "カム マカン サテ",
+      "romaji": "kamu makan sate",
+      "level": 5
+    },
+    {
+      "hira": "かむ まかん たふ",
+      "kata": "カム マカン タフ",
+      "romaji": "kamu makan tafu",
+      "level": 5
+    },
+    {
+      "hira": "かむ まかん ろち",
+      "kata": "カム マカン ロチ",
+      "romaji": "kamu makan rochi",
+      "level": 5
+    },
+    {
+      "hira": "かむ まかん あやむ",
+      "kata": "カム マカン アヤム",
+      "romaji": "kamu makan ayamu",
+      "level": 5
+    },
+    {
+      "hira": "かむ まかん いかん",
+      "kata": "カム マカン イカン",
+      "romaji": "kamu makan ikan",
+      "level": 5
+    },
+    {
+      "hira": "かむ まかん こぴ",
+      "kata": "カム マカン コピ",
+      "romaji": "kamu makan kopi",
+      "level": 5
+    },
+    {
+      "hira": "かむ まかん すす",
+      "kata": "カム マカン スス",
+      "romaji": "kamu makan susu",
+      "level": 5
+    },
+    {
+      "hira": "かむ まかん あいる",
+      "kata": "カム マカン アイル",
+      "romaji": "kamu makan airu",
+      "level": 5
+    },
+    {
+      "hira": "かむ まかん みー",
+      "kata": "カム マカン ミー",
+      "romaji": "kamu makan mii",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ まかん なし",
+      "kata": "ディア マカン ナシ",
+      "romaji": "dia makan nashi",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ まかん さて",
+      "kata": "ディア マカン サテ",
+      "romaji": "dia makan sate",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ まかん たふ",
+      "kata": "ディア マカン タフ",
+      "romaji": "dia makan tafu",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ まかん ろち",
+      "kata": "ディア マカン ロチ",
+      "romaji": "dia makan rochi",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ まかん あやむ",
+      "kata": "ディア マカン アヤム",
+      "romaji": "dia makan ayamu",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ まかん いかん",
+      "kata": "ディア マカン イカン",
+      "romaji": "dia makan ikan",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ まかん こぴ",
+      "kata": "ディア マカン コピ",
+      "romaji": "dia makan kopi",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ まかん すす",
+      "kata": "ディア マカン スス",
+      "romaji": "dia makan susu",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ まかん あいる",
+      "kata": "ディア マカン アイル",
+      "romaji": "dia makan airu",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ まかん みー",
+      "kata": "ディア マカン ミー",
+      "romaji": "dia makan mii",
+      "level": 5
+    },
+    {
+      "hira": "さや みぬむ なし",
+      "kata": "サヤ ミヌム ナシ",
+      "romaji": "saya minumu nashi",
+      "level": 5
+    },
+    {
+      "hira": "さや みぬむ さて",
+      "kata": "サヤ ミヌム サテ",
+      "romaji": "saya minumu sate",
+      "level": 5
+    },
+    {
+      "hira": "さや みぬむ たふ",
+      "kata": "サヤ ミヌム タフ",
+      "romaji": "saya minumu tafu",
+      "level": 5
+    },
+    {
+      "hira": "さや みぬむ ろち",
+      "kata": "サヤ ミヌム ロチ",
+      "romaji": "saya minumu rochi",
+      "level": 5
+    },
+    {
+      "hira": "さや みぬむ あやむ",
+      "kata": "サヤ ミヌム アヤム",
+      "romaji": "saya minumu ayamu",
+      "level": 5
+    },
+    {
+      "hira": "さや みぬむ いかん",
+      "kata": "サヤ ミヌム イカン",
+      "romaji": "saya minumu ikan",
+      "level": 5
+    },
+    {
+      "hira": "さや みぬむ こぴ",
+      "kata": "サヤ ミヌム コピ",
+      "romaji": "saya minumu kopi",
+      "level": 5
+    },
+    {
+      "hira": "さや みぬむ すす",
+      "kata": "サヤ ミヌム スス",
+      "romaji": "saya minumu susu",
+      "level": 5
+    },
+    {
+      "hira": "さや みぬむ あいる",
+      "kata": "サヤ ミヌム アイル",
+      "romaji": "saya minumu airu",
+      "level": 5
+    },
+    {
+      "hira": "さや みぬむ みー",
+      "kata": "サヤ ミヌム ミー",
+      "romaji": "saya minumu mii",
+      "level": 5
+    },
+    {
+      "hira": "かむ みぬむ なし",
+      "kata": "カム ミヌム ナシ",
+      "romaji": "kamu minumu nashi",
+      "level": 5
+    },
+    {
+      "hira": "かむ みぬむ さて",
+      "kata": "カム ミヌム サテ",
+      "romaji": "kamu minumu sate",
+      "level": 5
+    },
+    {
+      "hira": "かむ みぬむ たふ",
+      "kata": "カム ミヌム タフ",
+      "romaji": "kamu minumu tafu",
+      "level": 5
+    },
+    {
+      "hira": "かむ みぬむ ろち",
+      "kata": "カム ミヌム ロチ",
+      "romaji": "kamu minumu rochi",
+      "level": 5
+    },
+    {
+      "hira": "かむ みぬむ あやむ",
+      "kata": "カム ミヌム アヤム",
+      "romaji": "kamu minumu ayamu",
+      "level": 5
+    },
+    {
+      "hira": "かむ みぬむ いかん",
+      "kata": "カム ミヌム イカン",
+      "romaji": "kamu minumu ikan",
+      "level": 5
+    },
+    {
+      "hira": "かむ みぬむ こぴ",
+      "kata": "カム ミヌム コピ",
+      "romaji": "kamu minumu kopi",
+      "level": 5
+    },
+    {
+      "hira": "かむ みぬむ すす",
+      "kata": "カム ミヌム スス",
+      "romaji": "kamu minumu susu",
+      "level": 5
+    },
+    {
+      "hira": "かむ みぬむ あいる",
+      "kata": "カム ミヌム アイル",
+      "romaji": "kamu minumu airu",
+      "level": 5
+    },
+    {
+      "hira": "かむ みぬむ みー",
+      "kata": "カム ミヌム ミー",
+      "romaji": "kamu minumu mii",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ みぬむ なし",
+      "kata": "ディア ミヌム ナシ",
+      "romaji": "dia minumu nashi",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ みぬむ さて",
+      "kata": "ディア ミヌム サテ",
+      "romaji": "dia minumu sate",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ みぬむ たふ",
+      "kata": "ディア ミヌム タフ",
+      "romaji": "dia minumu tafu",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ みぬむ ろち",
+      "kata": "ディア ミヌム ロチ",
+      "romaji": "dia minumu rochi",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ みぬむ あやむ",
+      "kata": "ディア ミヌム アヤム",
+      "romaji": "dia minumu ayamu",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ みぬむ いかん",
+      "kata": "ディア ミヌム イカン",
+      "romaji": "dia minumu ikan",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ みぬむ こぴ",
+      "kata": "ディア ミヌム コピ",
+      "romaji": "dia minumu kopi",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ みぬむ すす",
+      "kata": "ディア ミヌム スス",
+      "romaji": "dia minumu susu",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ みぬむ あいる",
+      "kata": "ディア ミヌム アイル",
+      "romaji": "dia minumu airu",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ みぬむ みー",
+      "kata": "ディア ミヌム ミー",
+      "romaji": "dia minumu mii",
+      "level": 5
+    },
+    {
+      "hira": "さや ぺるぎ ぱさる",
+      "kata": "サヤ ペルギ パサル",
+      "romaji": "saya perugi pasaru",
+      "level": 5
+    },
+    {
+      "hira": "さや ぺるぎ せこら",
+      "kata": "サヤ ペルギ セコラ",
+      "romaji": "saya perugi sekora",
+      "level": 5
+    },
+    {
+      "hira": "さや ぺるぎ かんとる",
+      "kata": "サヤ ペルギ カントル",
+      "romaji": "saya perugi kantoru",
+      "level": 5
+    },
+    {
+      "hira": "さや ぺるぎ るま",
+      "kata": "サヤ ペルギ ルマ",
+      "romaji": "saya perugi ruma",
+      "level": 5
+    },
+    {
+      "hira": "さや ぺるぎ たまん",
+      "kata": "サヤ ペルギ タマン",
+      "romaji": "saya perugi taman",
+      "level": 5
+    },
+    {
+      "hira": "さや じゃらん ぱさる",
+      "kata": "サヤ ジャラン パサル",
+      "romaji": "saya jaran pasaru",
+      "level": 5
+    },
+    {
+      "hira": "さや じゃらん せこら",
+      "kata": "サヤ ジャラン セコラ",
+      "romaji": "saya jaran sekora",
+      "level": 5
+    },
+    {
+      "hira": "さや じゃらん かんとる",
+      "kata": "サヤ ジャラン カントル",
+      "romaji": "saya jaran kantoru",
+      "level": 5
+    },
+    {
+      "hira": "さや じゃらん るま",
+      "kata": "サヤ ジャラン ルマ",
+      "romaji": "saya jaran ruma",
+      "level": 5
+    },
+    {
+      "hira": "さや じゃらん たまん",
+      "kata": "サヤ ジャラン タマン",
+      "romaji": "saya jaran taman",
+      "level": 5
+    },
+    {
+      "hira": "かむ ぺるぎ ぱさる",
+      "kata": "カム ペルギ パサル",
+      "romaji": "kamu perugi pasaru",
+      "level": 5
+    },
+    {
+      "hira": "かむ ぺるぎ せこら",
+      "kata": "カム ペルギ セコラ",
+      "romaji": "kamu perugi sekora",
+      "level": 5
+    },
+    {
+      "hira": "かむ ぺるぎ かんとる",
+      "kata": "カム ペルギ カントル",
+      "romaji": "kamu perugi kantoru",
+      "level": 5
+    },
+    {
+      "hira": "かむ ぺるぎ るま",
+      "kata": "カム ペルギ ルマ",
+      "romaji": "kamu perugi ruma",
+      "level": 5
+    },
+    {
+      "hira": "かむ ぺるぎ たまん",
+      "kata": "カム ペルギ タマン",
+      "romaji": "kamu perugi taman",
+      "level": 5
+    },
+    {
+      "hira": "かむ じゃらん ぱさる",
+      "kata": "カム ジャラン パサル",
+      "romaji": "kamu jaran pasaru",
+      "level": 5
+    },
+    {
+      "hira": "かむ じゃらん せこら",
+      "kata": "カム ジャラン セコラ",
+      "romaji": "kamu jaran sekora",
+      "level": 5
+    },
+    {
+      "hira": "かむ じゃらん かんとる",
+      "kata": "カム ジャラン カントル",
+      "romaji": "kamu jaran kantoru",
+      "level": 5
+    },
+    {
+      "hira": "かむ じゃらん るま",
+      "kata": "カム ジャラン ルマ",
+      "romaji": "kamu jaran ruma",
+      "level": 5
+    },
+    {
+      "hira": "かむ じゃらん たまん",
+      "kata": "カム ジャラン タマン",
+      "romaji": "kamu jaran taman",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ ぺるぎ ぱさる",
+      "kata": "ディア ペルギ パサル",
+      "romaji": "dia perugi pasaru",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ ぺるぎ せこら",
+      "kata": "ディア ペルギ セコラ",
+      "romaji": "dia perugi sekora",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ ぺるぎ かんとる",
+      "kata": "ディア ペルギ カントル",
+      "romaji": "dia perugi kantoru",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ ぺるぎ るま",
+      "kata": "ディア ペルギ ルマ",
+      "romaji": "dia perugi ruma",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ ぺるぎ たまん",
+      "kata": "ディア ペルギ タマン",
+      "romaji": "dia perugi taman",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ じゃらん ぱさる",
+      "kata": "ディア ジャラン パサル",
+      "romaji": "dia jaran pasaru",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ じゃらん せこら",
+      "kata": "ディア ジャラン セコラ",
+      "romaji": "dia jaran sekora",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ じゃらん かんとる",
+      "kata": "ディア ジャラン カントル",
+      "romaji": "dia jaran kantoru",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ じゃらん るま",
+      "kata": "ディア ジャラン ルマ",
+      "romaji": "dia jaran ruma",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ じゃらん たまん",
+      "kata": "ディア ジャラン タマン",
+      "romaji": "dia jaran taman",
+      "level": 5
+    },
+    {
+      "hira": "かみ すか ぶく",
+      "kata": "カミ スカ ブク",
+      "romaji": "kami suka buku",
+      "level": 5
+    },
+    {
+      "hira": "かみ すか ぎたー",
+      "kata": "カミ スカ ギター",
+      "romaji": "kami suka gitaa",
+      "level": 5
+    },
+    {
+      "hira": "かみ すか てれび",
+      "kata": "カミ スカ テレビ",
+      "romaji": "kami suka terebi",
+      "level": 5
+    },
+    {
+      "hira": "かみ すか らじお",
+      "kata": "カミ スカ ラジオ",
+      "romaji": "kami suka rajio",
+      "level": 5
+    },
+    {
+      "hira": "かみ すか たんご",
+      "kata": "カミ スカ タンゴ",
+      "romaji": "kami suka tango",
+      "level": 5
+    },
+    {
+      "hira": "かみ すか こぴ",
+      "kata": "カミ スカ コピ",
+      "romaji": "kami suka kopi",
+      "level": 5
+    },
+    {
+      "hira": "かみ すか すす",
+      "kata": "カミ スカ スス",
+      "romaji": "kami suka susu",
+      "level": 5
+    },
+    {
+      "hira": "かみ すか さて",
+      "kata": "カミ スカ サテ",
+      "romaji": "kami suka sate",
+      "level": 5
+    },
+    {
+      "hira": "かみ すか たふ",
+      "kata": "カミ スカ タフ",
+      "romaji": "kami suka tafu",
+      "level": 5
+    },
+    {
+      "hira": "かみ すか ろち",
+      "kata": "カミ スカ ロチ",
+      "romaji": "kami suka rochi",
+      "level": 5
+    },
+    {
+      "hira": "めれか すか ぶく",
+      "kata": "メレカ スカ ブク",
+      "romaji": "mereka suka buku",
+      "level": 5
+    },
+    {
+      "hira": "めれか すか ぎたー",
+      "kata": "メレカ スカ ギター",
+      "romaji": "mereka suka gitaa",
+      "level": 5
+    },
+    {
+      "hira": "めれか すか てれび",
+      "kata": "メレカ スカ テレビ",
+      "romaji": "mereka suka terebi",
+      "level": 5
+    },
+    {
+      "hira": "めれか すか らじお",
+      "kata": "メレカ スカ ラジオ",
+      "romaji": "mereka suka rajio",
+      "level": 5
+    },
+    {
+      "hira": "めれか すか たんご",
+      "kata": "メレカ スカ タンゴ",
+      "romaji": "mereka suka tango",
+      "level": 5
+    },
+    {
+      "hira": "めれか すか こぴ",
+      "kata": "メレカ スカ コピ",
+      "romaji": "mereka suka kopi",
+      "level": 5
+    },
+    {
+      "hira": "めれか すか すす",
+      "kata": "メレカ スカ スス",
+      "romaji": "mereka suka susu",
+      "level": 5
+    },
+    {
+      "hira": "めれか すか さて",
+      "kata": "メレカ スカ サテ",
+      "romaji": "mereka suka sate",
+      "level": 5
+    },
+    {
+      "hira": "めれか すか たふ",
+      "kata": "メレカ スカ タフ",
+      "romaji": "mereka suka tafu",
+      "level": 5
+    },
+    {
+      "hira": "めれか すか ろち",
+      "kata": "メレカ スカ ロチ",
+      "romaji": "mereka suka rochi",
+      "level": 5
+    },
+    {
+      "hira": "にこ すか ぶく",
+      "kata": "ニコ スカ ブク",
+      "romaji": "niko suka buku",
+      "level": 5
+    },
+    {
+      "hira": "にこ すか ぎたー",
+      "kata": "ニコ スカ ギター",
+      "romaji": "niko suka gitaa",
+      "level": 5
+    },
+    {
+      "hira": "にこ すか てれび",
+      "kata": "ニコ スカ テレビ",
+      "romaji": "niko suka terebi",
+      "level": 5
+    },
+    {
+      "hira": "にこ すか らじお",
+      "kata": "ニコ スカ ラジオ",
+      "romaji": "niko suka rajio",
+      "level": 5
+    },
+    {
+      "hira": "にこ すか たんご",
+      "kata": "ニコ スカ タンゴ",
+      "romaji": "niko suka tango",
+      "level": 5
+    },
+    {
+      "hira": "にこ すか こぴ",
+      "kata": "ニコ スカ コピ",
+      "romaji": "niko suka kopi",
+      "level": 5
+    },
+    {
+      "hira": "にこ すか すす",
+      "kata": "ニコ スカ スス",
+      "romaji": "niko suka susu",
+      "level": 5
+    },
+    {
+      "hira": "にこ すか さて",
+      "kata": "ニコ スカ サテ",
+      "romaji": "niko suka sate",
+      "level": 5
+    },
+    {
+      "hira": "にこ すか たふ",
+      "kata": "ニコ スカ タフ",
+      "romaji": "niko suka tafu",
+      "level": 5
+    },
+    {
+      "hira": "にこ すか ろち",
+      "kata": "ニコ スカ ロチ",
+      "romaji": "niko suka rochi",
+      "level": 5
+    },
+    {
+      "hira": "ぶく ばる せかり",
+      "kata": "ブク バル セカリ",
+      "romaji": "buku baru sekari",
+      "level": 5
+    },
+    {
+      "hira": "ぶく らま せかり",
+      "kata": "ブク ラマ セカリ",
+      "romaji": "buku rama sekari",
+      "level": 5
+    },
+    {
+      "hira": "ぶく まはる せかり",
+      "kata": "ブク マハル セカリ",
+      "romaji": "buku maharu sekari",
+      "level": 5
+    },
+    {
+      "hira": "こぴ まにす せかり",
+      "kata": "コピ マニス セカリ",
+      "romaji": "kopi manisu sekari",
+      "level": 5
+    },
+    {
+      "hira": "こぴ ぱいつ せかり",
+      "kata": "コピ パイツ セカリ",
+      "romaji": "kopi paitsu sekari",
+      "level": 5
+    },
+    {
+      "hira": "るま べさる せかり",
+      "kata": "ルマ ベサル セカリ",
+      "romaji": "ruma besaru sekari",
+      "level": 5
+    },
+    {
+      "hira": "るま けちる せかり",
+      "kata": "ルマ ケチル セカリ",
+      "romaji": "ruma kechiru sekari",
+      "level": 5
+    },
+    {
+      "hira": "もびる ちゃぱつ せかり",
+      "kata": "モビル チャパツ セカリ",
+      "romaji": "mobiru chapatsu sekari",
+      "level": 5
+    },
+    {
+      "hira": "もびる らま せかり",
+      "kata": "モビル ラマ セカリ",
+      "romaji": "mobiru rama sekari",
+      "level": 5
+    },
+    {
+      "hira": "ばじゅ ばる せかり",
+      "kata": "バジュ バル セカリ",
+      "romaji": "baju baru sekari",
+      "level": 5
+    },
+    {
+      "hira": "ばじゅ ことる せかり",
+      "kata": "バジュ コトル セカリ",
+      "romaji": "baju kotoru sekari",
+      "level": 5
+    },
+    {
+      "hira": "せぱつ ばる せかり",
+      "kata": "セパツ バル セカリ",
+      "romaji": "sepatsu baru sekari",
+      "level": 5
+    },
+    {
+      "hira": "せぱつ ばいく せかり",
+      "kata": "セパツ バイク セカリ",
+      "romaji": "sepatsu baiku sekari",
+      "level": 5
+    },
+    {
+      "hira": "まかなん えなく せかり",
+      "kata": "マカナン エナク セカリ",
+      "romaji": "makanan enaku sekari",
+      "level": 5
+    },
+    {
+      "hira": "みぬまん えなく せかり",
+      "kata": "ミヌマン エナク セカリ",
+      "romaji": "minuman enaku sekari",
+      "level": 5
+    },
+    {
+      "hira": "さや べり ぶく ばる",
+      "kata": "サヤ ベリ ブク バル",
+      "romaji": "saya beri buku baru",
+      "level": 5
+    },
+    {
+      "hira": "さや べり ばじゅ めら",
+      "kata": "サヤ ベリ バジュ メラ",
+      "romaji": "saya beri baju mera",
+      "level": 5
+    },
+    {
+      "hira": "さや べり もびる べさる",
+      "kata": "サヤ ベリ モビル ベサル",
+      "romaji": "saya beri mobiru besaru",
+      "level": 5
+    },
+    {
+      "hira": "さや べり るま まはる",
+      "kata": "サヤ ベリ ルマ マハル",
+      "romaji": "saya beri ruma maharu",
+      "level": 5
+    },
+    {
+      "hira": "さや べり こぴ まにす",
+      "kata": "サヤ ベリ コピ マニス",
+      "romaji": "saya beri kopi manisu",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ べり ぶく ばる",
+      "kata": "ディア ベリ ブク バル",
+      "romaji": "dia beri buku baru",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ べり ばじゅ めら",
+      "kata": "ディア ベリ バジュ メラ",
+      "romaji": "dia beri baju mera",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ べり もびる べさる",
+      "kata": "ディア ベリ モビル ベサル",
+      "romaji": "dia beri mobiru besaru",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ べり るま まはる",
+      "kata": "ディア ベリ ルマ マハル",
+      "romaji": "dia beri ruma maharu",
+      "level": 5
+    },
+    {
+      "hira": "でぃあ べり こぴ まにす",
+      "kata": "ディア ベリ コピ マニス",
+      "romaji": "dia beri kopi manisu",
+      "level": 5
+    },
+    {
+      "hira": "かむ べり ぶく ばる",
+      "kata": "カム ベリ ブク バル",
+      "romaji": "kamu beri buku baru",
+      "level": 5
+    },
+    {
+      "hira": "かむ べり ばじゅ めら",
+      "kata": "カム ベリ バジュ メラ",
+      "romaji": "kamu beri baju mera",
+      "level": 5
+    },
+    {
+      "hira": "かむ べり もびる べさる",
+      "kata": "カム ベリ モビル ベサル",
+      "romaji": "kamu beri mobiru besaru",
+      "level": 5
+    },
+    {
+      "hira": "かむ べり るま まはる",
+      "kata": "カム ベリ ルマ マハル",
+      "romaji": "kamu beri ruma maharu",
+      "level": 5
+    },
+    {
+      "hira": "かむ べり こぴ まにす",
+      "kata": "カム ベリ コピ マニス",
+      "romaji": "kamu beri kopi manisu",
+      "level": 5
+    }
+  ]
+}
