@@ -513,7 +513,7 @@
       return maxLen > 0 ? 1.0 - (matrix[a.length][b.length] / maxLen) : 1.0;
   }
 
-  function compareChar(inputChar, dbChar) {
+ function compareChar(inputChar, dbChar) {
       let score = 100.0;
       const inputCode = inputChar.characterCode || '';
       const dbCode = dbChar.characterCode || '';
@@ -524,6 +524,31 @@
 
       const aspectDiff = Math.abs((inputChar.originalAspectRatio || 0.0) - (dbChar.originalAspectRatio || 0.0));
       score -= aspectDiff * 15.0;
+
+      // LOGIKA BARU: Bounding Box Size & Position Classifier
+      let dbRelWidth = 0.5, dbRelHeight = 0.5, dbRelCx = 0.5, dbRelCy = 0.5;
+      if (dbChar.originalBbox) {
+          // Mengkonversi ukuran matriks standar (109x109) menjadi persentase relatif (0.0 - 1.0)
+          dbRelWidth = (dbChar.originalBbox.maxX - dbChar.originalBbox.minX) / 109.0;
+          dbRelHeight = (dbChar.originalBbox.maxY - dbChar.originalBbox.minY) / 109.0;
+          dbRelCx = ((dbChar.originalBbox.maxX + dbChar.originalBbox.minX) / 2) / 109.0;
+          dbRelCy = ((dbChar.originalBbox.maxY + dbChar.originalBbox.minY) / 2) / 109.0;
+      }
+
+      // Hindari fallback ke 0.5 jika fitur absen, ikuti ukuran DB agar tidak kena penalti buta
+      let inputRelWidth = inputChar.relativeWidth || dbRelWidth;
+      let inputRelHeight = inputChar.relativeHeight || dbRelHeight;
+      let inputRelCx = inputChar.relativeCx || dbRelCx;
+      let inputRelCy = inputChar.relativeCy || dbRelCy;
+
+      let sizePosDiff = 
+          Math.abs(inputRelWidth - dbRelWidth) + 
+          Math.abs(inputRelHeight - dbRelHeight) +
+          Math.abs(inputRelCx - dbRelCx) + 
+          Math.abs(inputRelCy - dbRelCy);
+
+      // Beri penalti jika letak & proporsi gambar terlalu jauh bedanya (misal user tulis あ tapi db adalah ぁ)
+      score -= sizePosDiff * 15.0; 
 
       const inputStrokes = inputChar.strokes || [];
       const dbStrokes = dbChar.strokes || [];
@@ -660,6 +685,12 @@
           const cxGlobal = minX + width / 2;
           const cyGlobal = minY + height / 2;
 
+          // Ekstrak rasio ukuran dan posisi absolut relatif terhadap Kanvas (300x300)
+          const relativeWidth = width / 300.0;
+          const relativeHeight = height / 300.0;
+          const relativeCx = cxGlobal / 300.0;
+          const relativeCy = cyGlobal / 300.0;
+
           let totalLength = 0;
           const strokeLengths = strokes.map(s => {
               let l = 0;
@@ -718,9 +749,14 @@
               characterCode: "",
               numStrokes: strokes.length,
               originalAspectRatio: originalAspectRatio,
+              relativeWidth: relativeWidth,      // <-- Data baru yang disisipkan
+              relativeHeight: relativeHeight,    // <-- Data baru yang disisipkan
+              relativeCx: relativeCx,            // <-- Data baru yang disisipkan
+              relativeCy: relativeCy,            // <-- Data baru yang disisipkan
               strokes: extractedStrokes
           };
       }
+ 
   }
 
   // ==================== KANA RECOGNIZER ====================
@@ -1328,16 +1364,6 @@
     if (currentStrokes.length === 0) { res.innerText = "⚠️ Kanvas masih kosong. Silakan tulis hurufnya dahulu."; res.className = "mt-4 text-sm font-bold text-center h-auto min-h-[4rem] w-full text-amber-400"; shakeEl(canvas); sound.wrong(); return; }
     if (!writingTarget) return;
 
-    if (window.currentTierMode === "T1") {
-      res.innerHTML = `✅ <b>Sempurna!</b> Latihan otot yang bagus. Terus ikuti jalurnya!<br><span class="text-xs text-teal-200/70 font-normal mt-1 block">T1 Auto-Pass: Fokus pada gerakan & memori otot</span>`;
-      res.className = "mt-4 text-sm font-bold text-center h-auto min-h-[4rem] w-full text-teal-400 animate-pop flex flex-col justify-center";
-      setMascot("😸", `Bagus! Coba ingat bentuk dan arahnya ya! Lanjut!`, true);
-      sound.stamp(); addGoal('write'); confetti({particleCount: 20, spread: 30, origin: { y: 0.7 }});
-      updateStat(writingTarget.char, true);
-      setTimeout(() => { let idx = currentKanaList.findIndex(k => k.char === writingTarget.char); if(idx > -1 && idx < currentKanaList.length - 1) { let nextBtn = document.querySelectorAll("#writeCharList button")[idx + 1]; if(nextBtn) nextBtn.click(); } }, 1500);
-      return;
-    }
-
     if (!kanaFeaturesDB || Object.keys(kanaFeaturesDB).length === 0) {
         res.innerText = "⚠️ Data referensi features belum siap. Pastikan JSON berhasil dimuat."; return; 
     }
@@ -1348,7 +1374,14 @@
     const finalScore = topMatch ? topMatch.score : 0;
     const topMatchChar = topMatch ? String.fromCodePoint(parseInt(topMatch.char, 16)) : "?";
 
-    let requiredThreshold = (window.currentTierMode === "T2") ? 40 : 60;
+    // Penyesuaian Threshold berdasarkan Tier
+    let requiredThreshold = 60; // Default T3 (Blank Recall) paling ketat
+    if (window.currentTierMode === "T1") {
+        requiredThreshold = 30; // T1 Paling toleran karena mengikuti panduan penuh
+    } else if (window.currentTierMode === "T2") {
+        requiredThreshold = 40; // T2 Menengah
+    }
+
     if (topMatchChar === writingTarget.char && finalScore >= requiredThreshold) {
         res.innerHTML = `✅ <b>Sempurna!</b> Goresan mengalir natural dan mudah dibaca.<br><span class="text-xs text-teal-200/70 font-normal mt-1 block">Kemiripan: ${finalScore}%</span>`;
         res.className = "mt-4 text-sm font-bold text-center h-auto min-h-[4rem] w-full text-teal-400 animate-pop flex flex-col justify-center";
